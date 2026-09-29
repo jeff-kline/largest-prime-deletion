@@ -38,9 +38,9 @@ lemma, or proof text changed.
 | C4 | claim-prose | Parity testing not explicitly disclaimed as new | Fixed in README ("Standard tools" bullet) and in the last paragraph of paper Section 1.1 |
 | C5 | claim-prose | "process-separated AI audits" called jargon | Declined: this is the release standard's prescribed description, chosen so that separate contexts are not presented as independent experts |
 | C6–C10 | claim-prose | optional style and date notes | C7/C8: TV now defined in words in the README; others noted, no change |
-| F1 | failure search | Corollary deduction and factor two sound | No action |
-| F5 | failure search | Claims statement 4 (Lemma 6.2) alone implies ζ(1+iγ) ≠ 0, so the PNT's difficulty must hide in its large-frequency step | Rejected after owner check. The inference assumes a zero would force |E p^{iγ₀}| → 1 in the window; the envelope f_n ≤ J/(Hx) (from the Chebyshev-type Lemma 2.3) forbids such concentration, and Lemma 6.2 Step 1 proves |φ_n(t)| ≤ κ from the envelope alone, for every |t| > T₀ including frequencies growing with n. As in Richter's proof, the integer structure enters through squarefree counting (Lemma 2.1) in Proposition 3.1, not through the prime smoothing. Step 1 is also in the fresh proof audit's scope |
-| F7 | failure search | Statement 1 is vacuous when B_{d+1} is empty (small K) | No change: Theorem 1.1 is for sufficiently large K, and Section 3 assumes Z_h > 0 |
+| F1 (report E1) | failure search | Corollary deduction and factor two sound | No action |
+| F5 (report E6) | failure search | Claims statement 4 (Lemma 6.2) alone implies ζ(1+iγ) ≠ 0, so the PNT's difficulty must hide in its large-frequency step | Rejected after owner check. The inference assumes a zero would force |E p^{iγ₀}| → 1 in the window; the envelope f_n ≤ J/(Hx) (from the Chebyshev-type Lemma 2.3) forbids such concentration, and Lemma 6.2 Step 1 proves |φ_n(t)| ≤ κ from the envelope alone, for every |t| > T₀ including frequencies growing with n. As in Richter's proof, the integer structure enters through squarefree counting (Lemma 2.1) in Proposition 3.1, not through the prime smoothing. Step 1 is also in the fresh proof audit's scope, which verified it. The report labels E6 UNRESOLVED as a proof risk; the owner disposition above supersedes that label only for this release's purposes and the report is unchanged |
+| F7 (report E8) | failure search | Statement 1 is vacuous when B_{d+1} is empty (small K) | No change: Theorem 1.1 is for sufficiently large K, and Section 3 assumes Z_h > 0 |
 | P1 | proof audit F1 | a = min(1/4, η/[2(d+1)]) always equals the second term | Fixed: a = η/[2(d+1)] ≤ 1/4; "for large d" removed in Section 7 |
 | P2 | proof audit F2 | letter c reused for absolute constants | Fixed: Q(x) ≥ x/2 (so P(p divides a) ≤ 2/p); c → c₀ in Section 7 |
 | P3 | proof audit F3 | R reused as frequency cutoff | Fixed: renamed T₁ |
@@ -76,3 +76,26 @@ On 2026-09-28 the owner redacted a local interpreter path and a scratch-director
 reference in the "Tools" line of `reports/initial-failure-search.md`. The
 redaction is marked in the text. No finding or verdict was changed. The probe
 scripts are not part of the release.
+
+## Integration check (2026-09-28)
+
+`reports/integration-check.md` (mid-tier agent, fresh context, read-only) checked commit `89fc184` against `d199bfb`. All mathematical edits are correct, and all "Fixed" rows are present. Overall PARTIAL on record gaps only:
+
+| ID | Finding | Disposition |
+|---|---|---|
+| I1 | `MANIFEST.sha256` not yet tracked | Fixed: manifest generated and committed at freeze |
+| I2 | VERIFICATION points to a PDF hash absent from ADMISSION | Fixed: hash added to ADMISSION; clean-archive rebuild rerun on the frozen commit |
+| I3 | tracked-tree scan not recorded | Fixed: scan recorded below |
+| I4 | CFF abstract omits "rate not claimed sharp" | Fixed |
+| I5 | Section 1.1 lacks the no-rate clause | Declined: stated in the abstract, Section 1, and Section 9; not worth changing the frozen PDF |
+| I6 | ADMISSION principal claim omits the matching estimate | Fixed |
+| I7 | failure-search labels E1/E6/E8 vs ledger F1/F5/F7 | Fixed: mapping added |
+| I8 | CFF message "Please cite Version 0.1.0" | Declined: the message must be timeless because Zenodo imports it; status lives in README and ADMISSION |
+
+## Hygiene scan (2026-09-28)
+
+A `git grep` for local home and temporary-directory paths, the local account
+name, scratch and agent-tool directories, placeholder markers (TODO, XXX, TBD),
+and personal email addresses, run over all tracked files except LICENSE, and over every commit in the history
+(`git rev-list --all`). Result after the redaction above: no matches. The scan
+is rerun on the frozen commit.

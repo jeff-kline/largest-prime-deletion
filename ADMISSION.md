@@ -20,7 +20,7 @@ largest prime factor (with T(1) = 1), and let `ν_{n,K}` be the law of
 `limsup_{n→∞} TV(ν_{n,K}, ν_{n,K+1}) ≤ C (log K)^(−1/4)`
 
 with an absolute constant C. The limit in n is taken with K fixed. Testing
-against the Möbius function gives `M(n) = o(n)`. The proof does not assume
+against the Möbius function gives `M(n) = o(n)`. The technical contribution is a uniform matching estimate for products of d and d + 1 primes from a moving window (Proposition 6.3). The proof does not assume
 the prime number theorem and uses Plancherel's theorem. It gives no rate for
 `M(n)/n` and no new error term. The statement of the deletion theorem alone
 is not claimed as new, and the rate is not claimed to be sharp.
@@ -48,7 +48,7 @@ corpus.
 | Prior work credited near the claims | PASS | Section 1.1; `audit/LEDGER.md` A-F1 to A-F8 |
 | Public prose plain and free of process history | PASS | `audit/reports/claim-prose-audit.md` findings C1–C4 fixed; draft-status paragraph removed |
 | Title, author, version, and status agree | PASS | README, PDF title page and metadata, `CITATION.cff`, this file |
-| Adversarial checking | PASS | Isolated failure search NOT-BROKEN; fresh full proof audit VERIFIED; all findings dispositioned in `audit/LEDGER.md`. These are AI audits, not peer review. The post-audit integrated diff received its own read-only check (see the ledger) |
+| Adversarial checking | PASS | Isolated failure search NOT-BROKEN; fresh full proof audit VERIFIED; all findings dispositioned in `audit/LEDGER.md`. These are AI audits, not peer review. The integrated diff received its own read-only check (`audit/reports/integration-check.md`, PARTIAL on record gaps only; dispositions in the ledger) |
 
 **A1 gate:** PASS. Any material claim edit reopens this gate.
 
@@ -57,9 +57,9 @@ corpus.
 | Check | Status | Evidence or residual |
 |---|---|---|
 | Reproduction commands and pinned tools | PASS | `VERIFICATION.md` |
-| Deterministic build from a clean archive | PASS | `git archive` extraction rebuilds `paper/main.pdf` byte-identically |
+| Deterministic build from a clean archive | PASS | `git archive` extraction rebuilds `paper/main.pdf` byte-identically: 14 pages, SHA-256 `2dd08930f32d66cf575c0db9a19baf89f179318164b997819c95692198d1c562` |
 | Complete tracked-file manifest | PASS | `MANIFEST.sha256` |
-| Hygiene: credentials, private paths, placeholders | PASS | Tracked-tree scan (see ledger) |
+| Hygiene: credentials, private paths, placeholders | PASS | Tracked-tree and history scan, recorded in `audit/LEDGER.md` |
 | Correction, withdrawal, and supersession policy | PASS | `CORRECTIONS.md` |
 | Machine-readable citation | PASS | `CITATION.cff`, candidate-safe: no DOI, no release date |
 | Immutable semantic tag | FAIL (not yet authorized) | Proposed: annotated `v0.1.0` at the frozen candidate commit |

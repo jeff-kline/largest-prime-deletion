@@ -20,7 +20,8 @@ abstract: >-
   M(n)=o(n). The argument does not assume the prime number theorem; it uses
   elementary prime estimates and Plancherel's theorem. It gives no rate for
   M(n)/n and no new prime number theorem error term, and the statement of the
-  deletion theorem alone is not claimed as new.
+  deletion theorem alone is not claimed as new; the rate is not claimed to be
+  sharp.
 keywords:
   - largest prime factor
   - total variation
