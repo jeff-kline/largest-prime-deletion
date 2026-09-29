@@ -25,7 +25,23 @@ Suspected errors may be reported through the repository issue tracker:
 
 ## Version history
 
-### 0.1.0 — release candidate (not yet tagged or archived)
+### 0.1.0 — released 2026-09-29
+
+- Tag `v0.1.0` at commit `413f022`; version DOI
+  [`10.5281/zenodo.23038366`](https://doi.org/10.5281/zenodo.23038366), concept DOI `10.5281/zenodo.23038365`.
+- The tagged snapshot retains its prepublication "release candidate" wording
+  and carries no DOI, because Zenodo minted the DOI after the GitHub Release.
+  The living repository and paper now carry the active DOI; the archived files
+  were not changed. The living PDF differs from the tagged one only in its
+  title-page version line and PDF metadata.
+
+#### Release preparation, before the tag
+
+- Between the first frozen candidate (`2da63c1`, 2026-09-28) and the tag, the
+  author directed a prose revision that leads with the prime number theorem in
+  its Möbius form, and retitled the paper from "Total variation under
+  largest-prime deletion" to "The prime number theorem via largest-prime
+  deletion". Theorem statements and proofs did not change.
 
 - Release preparation began 2026-09-28 from a drafting manuscript with SHA-256
   `4f01b8a7b08749251fe1784ef1fc34c82283a6b6622cb7d9077a1a6d83bbf15b` (13-page

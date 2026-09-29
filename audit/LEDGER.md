@@ -142,3 +142,18 @@ and cross-references consistent. Overall PARTIAL:
 
 Refreeze: `git archive b78722d` rebuilds the PDF byte-identically. The records
 were updated to CANDIDATE and the manifest was regenerated.
+
+## Archive and admission — 2026-09-29
+
+- Tag `v0.1.0` (object `969eb23`) → `413f022`; GitHub Release published
+  2026-09-29T10:50:11Z. Zenodo accepted the `published` webhook (202). Its
+  GitHub page showed "Received" until the record went public at 11:50:54Z.
+- Zenodo record 23038366 (version DOI `10.5281/zenodo.23038366`, concept `10.5281/zenodo.23038365`): metadata
+  matches, and the file is byte-identical to the pinned zipball `c133d8ba364f29266aa4f6440c3286fe50d536993c79e548a112bb55de96d7ae`. The
+  DOI returned 404 at first check (registration lag) and resolved about
+  twenty minutes later.
+- Archived-state `release_audit.py` on the unchanged tagged tree: 12 pass,
+  0 warning, 0 fail.
+- Living metadata (README, CITATION.cff, paper title page and metadata,
+  CORRECTIONS, VERIFICATION, ADMISSION) updated to ADMITTED at the author's
+  direction. The site listing was deferred.

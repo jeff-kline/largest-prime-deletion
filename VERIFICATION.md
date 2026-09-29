@@ -1,4 +1,4 @@
-# Verification record — version 0.1.0 (release candidate)
+# Verification record — version 0.1.0
 
 Initial candidate recorded 2026-09-28; prose revision checked 2026-09-29.
 
@@ -85,3 +85,15 @@ review is not a fresh proof audit.
 - Refreeze (2026-09-29): `git archive b78722d` was extracted into an empty
   scratch directory. `make paper` and `make check` succeeded, and the rebuilt
   PDF was byte-identical (`bb59bd84ba633980aad5c1df93d233ebca0cd5529a6309fb6912e0c3c1495e1f`). The refreeze commit changes records only.
+
+## Archive and living copy (2026-09-29)
+
+- Tagged PDF (in `v0.1.0`): SHA-256 `bb59bd84ba633980aad5c1df93d233ebca0cd5529a6309fb6912e0c3c1495e1f`.
+- Pinned GitHub `zipball/v0.1.0`, two identical downloads: 412,038 bytes,
+  SHA-256 `c133d8ba364f29266aa4f6440c3286fe50d536993c79e548a112bb55de96d7ae`. Its internal manifest verifies.
+- Zenodo record 23038366 file `jeff-kline/largest-prime-deletion-v0.1.0.zip`:
+  two downloads byte-identical to the pinned zipball; provider MD5
+  `d415cc11d7352eee33e08184cc1e77d7`.
+- Living PDF, with the version DOI on the title page and in the PDF subject:
+  built twice with identical bytes, `make check` PASS, title block inspected.
+  SHA-256 `5d261e79ec4a4a39c2b66fc5200cc02e78f5b38c09ae17952e91223f5ec954d1`.

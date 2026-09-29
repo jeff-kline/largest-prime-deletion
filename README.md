@@ -2,10 +2,17 @@
 
 Jeffery Kline
 
-**Version 0.1.0 — release candidate.** No tag, archive, or DOI exists yet;
-there is no stable citation for this version. Status is tracked in
-[ADMISSION.md](ADMISSION.md) under the project's
-[public research standard](https://jeff-kline.github.io/posts/research-program/index.html).
+[![Version DOI: 10.5281/zenodo.23038366](https://zenodo.org/badge/DOI/10.5281/zenodo.23038366.svg)](https://doi.org/10.5281/zenodo.23038366)
+
+**Version 0.1.0 — admitted, released 2026-09-29.** The immutable release is
+[`v0.1.0`](https://github.com/jeff-kline/largest-prime-deletion/releases/tag/v0.1.0),
+archived at version DOI [`10.5281/zenodo.23038366`](https://doi.org/10.5281/zenodo.23038366). The concept DOI
+[`10.5281/zenodo.23038365`](https://doi.org/10.5281/zenodo.23038365) resolves to the latest version; cite the
+version DOI for reproducibility. Admission under the project's
+[public research standard](https://jeff-kline.github.io/posts/research-program/index.html)
+is a release decision, not peer review or a correctness certificate. The
+tagged snapshot retains its prepublication "release candidate" wording because
+the DOI did not exist when it was made.
 
 The paper is [paper/main.pdf](paper/main.pdf); its source is
 [paper/main.tex](paper/main.tex).

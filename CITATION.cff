@@ -9,6 +9,15 @@ authors:
 repository-code: "https://github.com/jeff-kline/largest-prime-deletion"
 url: "https://github.com/jeff-kline/largest-prime-deletion"
 license: GPL-3.0-only
+doi: 10.5281/zenodo.23038366
+date-released: 2026-09-29
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23038366
+    description: "Version DOI for release 0.1.0"
+  - type: doi
+    value: 10.5281/zenodo.23038365
+    description: "Concept DOI; resolves to the latest version"
 abstract: >-
   A proof of the prime number theorem in its equivalent form M(n)=o(n),
   obtained by comparing successive deletions of largest prime factors from
