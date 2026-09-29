@@ -18,23 +18,29 @@ largest prime factors, stopping at 1, and let `ν_{n,K}` be the distribution of
 the integer that remains. For example, deleting largest primes one at a time
 takes 210 to 30, 6, 2, and then 1.
 
-The paper proves that the remaining integer stops changing in distribution as
-the depth K grows:
+The paper proves that consecutive depths give nearly the same distribution
+once K is large:
 
 ```text
 limsup_{n→∞} TV(ν_{n,K}, ν_{n,K+1}) = O((log K)^(−1/4))   as K → ∞.
 ```
 
-Here TV is total variation distance, so the bound controls every bounded test
-of the remaining integer at once. The limit in n is taken first, with K fixed.
+Here TV is total variation distance, the largest difference between the
+probabilities the two laws assign to any one set of integers, so the bound
+controls every bounded test of the remaining integer at once. The limit in n
+is taken first, with K fixed.
 
 The proof develops the multiplier-comparison method of Richter and of
-Bergelson and Richter, using windows of primes that move with n. A weighted
-Fourier estimate couples reciprocal-weighted products of d and d + 1 such
-primes so that their actual logarithms nearly agree, with constants that do
-not depend on the logarithmic width of the window. A greatest-common-divisor
+Bergelson and Richter: bias the random integer toward multiples of a random
+multiplier b, and compare two such biases. Here the multipliers are products of
+d or d + 1 primes from a window n^c < p ≤ n^β that moves with n, each prime
+drawn with probability proportional to 1/p. A weighted Fourier estimate
+couples the two products so that their actual logarithms nearly agree, with
+constants that do not depend on the logarithmic width log(β/c) of the window. A greatest-common-divisor
 bound and an exact deletion identity carry this coupling over to the remaining
-integers. Testing against the Möbius function then gives
+integers. Testing against the Möbius function (μ(m) = 0 if m is not squarefree, and
+otherwise +1 or −1 as m has an even or odd number of prime factors), whose sign
+flips with each deletion, then gives
 
 ```text
 M(n) = μ(1) + μ(2) + ... + μ(n) = o(n),
@@ -52,16 +58,25 @@ is used explicitly.
 ## What is new, and what is not
 
 The paper puts forward two things: the deletion theorem above, for the full
-distribution of the remaining integer, and the uniform matching estimate for
-products of adjacent degrees (Proposition 6.3, built on Lemmas 5.1 and 6.2).
-`M(n) = o(n)` is a consequence, not the headline.
+distribution of the remaining integer, proved without assuming the prime
+number theorem; and the uniform matching estimate for products of adjacent
+degrees (Proposition 6.3, built on Lemmas 5.1 and 6.2). `M(n) = o(n)` is a
+consequence, not the headline.
+
+The statement of the deletion theorem by itself is not claimed as new. Since
+the prime number theorem is known, standard asymptotics for integers with a
+prescribed number of large prime factors may already determine the limit in n,
+possibly with a better rate in K. That comparison has not been carried out, and
+the rate `(log K)^(−1/4)` is not claimed to be sharp.
 
 Established methods used here, and credited in Section 1.1 of the paper:
 
 - **Richter (2021)** and **Bergelson–Richter (2022)**: comparing divisor
   averages over matched multiplier sets, controlled by a reciprocal-weighted
-  greatest-common-divisor average. Bergelson–Richter also treat squarefree
-  sampling.
+  greatest-common-divisor average, a principle they trace to Daboussi and
+  Kátai. Bergelson–Richter also treat squarefree sampling; their proof of the
+  matched-set lemma uses the prime number theorem, so those sets are not
+  available here.
 - **Li, Wang, Wang, and Yi (2025)**: shift invariance for bounded functions of
   the number of prime factors over squarefree integers. That controls the
   prime-factor count, not the remaining integer itself.
@@ -73,6 +88,9 @@ Established methods used here, and credited in Section 1.1 of the paper:
 - **McNamara (2021)** and **Koukoulopoulos (2013)**: other dynamical and
   Fourier-analytic routes to the prime number theorem. Neither a dynamical
   reading nor the use of Fourier analysis is claimed as new.
+- **Standard tools**: reading `M(n)` off the sign change of μ under one more
+  deletion, the elementary prime estimates, Plancherel's theorem, and the
+  fractional-seminorm identity in Lemma 6.2 are not claimed as new.
 
 A fixed multiplier does not simply disappear under deletion: Remark 2.5 shows
 that it typically survives any fixed number of deletions. The moving lower
@@ -80,8 +98,10 @@ bound on multiplier primes is what makes the transfer work.
 
 These comparisons come from a bounded, targeted reading of the cited sources.
 No exact counterpart to the deletion theorem or to the uniform matching
-estimate was found in them. That is not a claim of worldwide priority; a short
-adaptation of known constructions has not been ruled out. The details and
+estimate was found in them. That is not a claim of worldwide priority. A
+moving-window variant of Richter's construction might give the qualitative
+limit without Fourier analysis; it has not been checked, and it is not expected
+to give the rate or the uniform matching estimate. The details and
 unread sources are in [audit/](audit/).
 
 ## Evidence and limits

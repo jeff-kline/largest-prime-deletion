@@ -79,17 +79,17 @@ All limits in $n$ below keep the other parameters fixed. Constants denoted $C$ o
 
 \subsection{Relation to earlier work}
 
-The multiplier comparison has a direct precedent in Richter~\cite{Richter}: Proposition~2.1 controls divisor averages by the reciprocal-weighted mean of $\gcd(b,c)-1$, and Proposition~2.2 matches finite sets of primes and products of $k$ primes. Bergelson--Richter~\cite{BR}, Proposition~2.1 and Lemmas~2.2--2.3, combine the same gcd control with matching primes and semiprimes in multiplicative intervals. We use this established averaging principle. The moving, squarefree version needed here is proved in Proposition~\ref{prop:transfer}.
+The multiplier comparison has a direct precedent in Richter~\cite{Richter}: Proposition~2.1 controls divisor averages by the reciprocal-weighted mean of $\gcd(b,c)-1$, and Proposition~2.2 matches finite sets of primes and products of $k$ primes. Bergelson--Richter~\cite{BR}, Proposition~2.1 and Lemmas~2.2--2.3, combine the same gcd control with matching primes and semiprimes in multiplicative intervals. Their proof of Lemma~2.2 uses the prime number theorem, so those particular sets are not available to an argument that does not assume it. We use this established averaging principle, which Richter and Bergelson--Richter trace to Daboussi and K\'atai. The moving, squarefree version needed here is proved in Proposition~\ref{prop:transfer}.
 
-Squarefree sampling is also an established part of this literature: Bergelson--Richter~\cite[Corollary~1.8]{BR} treat it explicitly. Li, Wang, Wang, and Yi~\cite[Theorem~1.7]{LWWY} prove shift invariance of averages of bounded functions of the number of prime factors over squarefree integers. Their Theorem~1.2 also allows specified largest-prime-factor restrictions. Theorem~\ref{thm:main} instead compares the entire integer remaining after deletion. Its total variation bound is uniform over all bounded tests on that integer, including tests chosen separately for each $n$. A theorem about the prime-factor count alone does not provide that control: pushing measures forward to a count contracts total variation, and the converse implication fails in general.
+Squarefree sampling is also an established part of this literature: Bergelson--Richter~\cite[Corollary~1.8]{BR} treat it explicitly. Li, Wang, Wang, and Yi~\cite[Theorem~1.7]{LWWY} prove shift invariance of averages of bounded functions of the number of prime factors over squarefree integers. Their Theorem~1.2(1) proves an equidistribution statement of this kind over squarefree integers whose largest prime factor lies in a prescribed set of primes of natural density. Theorem~\ref{thm:main} instead compares the entire integer remaining after deletion. Its total variation bound is uniform over all bounded tests on that integer, including tests chosen separately for each $n$. A theorem about the prime-factor count alone does not provide that control: pushing measures forward to a count contracts total variation, and the converse implication fails in general.
 
-The moving windows address a specific obstacle to applying fixed multipliers directly. If $b>1$ is fixed, its prime factors typically survive any fixed number of largest-prime deletions as $n$ grows; see Remark~\ref{rem:fixed}. Our multipliers have all factors greater than $n^{1/(K+1)}$, so those factors must instead disappear within $K$ deletions. Richter's finite-set existence statement does not itself impose these simultaneous moving lower and upper bounds. Its construction uses separated logarithmic index sets~\cite[Section~3]{Richter}; obtaining the required moving-window version would require additional estimates. This observation rules out a direct substitution of fixed sets, not every possible adaptation of that construction.
+The moving windows address a specific obstacle to applying fixed multipliers directly. If $b>1$ is fixed, its prime factors typically survive any fixed number of largest-prime deletions as $n$ grows; see Remark~\ref{rem:fixed}. Our multipliers have all factors greater than $n^{1/(K+1)}$, so those factors must instead disappear within $K$ deletions. Richter's finite-set existence statement does not itself impose these simultaneous moving lower and upper bounds. Its construction uses separated logarithmic index sets~\cite[Section~3]{Richter}; obtaining the required moving-window version would require additional estimates. This observation rules out a direct substitution of fixed sets, not every possible adaptation of that construction. A moving-window variant, with thinned prime pools in place of separated index sets, might give the qualitative limit in Theorem~\ref{thm:main} without Fourier analysis but with much faster-growing parameters; we have not checked this, and we do not see how it would give the rate in \eqref{eq:main} or the uniformity in Proposition~\ref{prop:matching}.
 
 The technical contribution developed here is the fixed-resolution matching in Proposition~\ref{prop:matching}. We use all squarefree products of adjacent degrees from one prime window. Lemma~\ref{lem:fourier} bounds the convolution defect independently of $H=\log(\beta/c)$ by cancelling a weighted $L^2$ factor against a weighted Cauchy--Schwarz factor. That uniformity allows $H\gg d^2$, simultaneously making the gcd error small. The comparison between sums and maxima in Lemma~\ref{lem:continuous} supplies the other part of the matching estimate. Plancherel and the fractional seminorm identity are standard tools; the proposed contribution is this parameter-uniform estimate and its use in deletion, rather than the Fourier identity itself.
 
 There are two further relevant comparisons. Arratia~\cite[Sections~3.4--3.5 and Theorems~3,~5]{Arratia} couples random prime factorizations to independent and Poisson--Dirichlet models, with insertion-deletion and logarithmic displacement bounds. These conclusions are different from adjacent-depth total variation; the fine prime-logarithm coupling in his Section~3.4.1 uses a prime number theorem error estimate. Total variation smoothing for sums is classical: Nourdin--Poly~\cite[Theorem~1.2]{NP} revisit Prohorov's theorem for normalized sums of a fixed law. Here the summand law changes with $n$, its jitter radius tends to zero, and uniformity in the window width is required. The cited theorem does not supply these estimates as stated.
 
-McNamara~\cite{McNamara} gives a related dynamical proof using Selberg's symmetry formula. Koukoulopoulos~\cite{Koukoulopoulos} combines elementary estimates with Fourier inversion in a different multiplicative-function approach. Thus neither a dynamical interpretation nor the use of real Fourier analysis is a novelty claim here. The specific result put forward is Theorem~\ref{thm:main}, with M\"obius cancellation as its arithmetic consequence. We have not located this deletion theorem or the stated uniform matching estimate in the works compared above; this is a bounded literature assessment, not an assertion that no equivalent result exists elsewhere.
+McNamara~\cite{McNamara} gives a related dynamical proof using Selberg's symmetry formula. Koukoulopoulos~\cite{Koukoulopoulos} combines elementary estimates with Fourier inversion in a different multiplicative-function approach. Thus neither a dynamical interpretation nor the use of real Fourier analysis is a novelty claim here. The specific result put forward is Theorem~\ref{thm:main}, proved without assuming the prime number theorem, with M\"obius cancellation as its arithmetic consequence. Since the prime number theorem is known, the statement of Theorem~\ref{thm:main} by itself is not claimed as new: assuming it, standard asymptotics for integers with a prescribed number of large prime factors may determine $\lim_{n}\TV(\nu_{n,K},\nu_{n,K+1})$, possibly with a better rate in $K$. We have not carried out that comparison, and the rate in \eqref{eq:main} is not claimed to be sharp. Reading $M(n)$ off the sign change of $\mu$ under one more deletion is likewise a standard device. We have not located this deletion theorem or the stated uniform matching estimate in the works compared above; this is a bounded literature assessment, not an assertion that no equivalent result exists elsewhere.
 
 \section{Elementary counting and prime estimates}
 
@@ -224,7 +224,7 @@ Then
 \begin{equation}\label{eq:transfer}
  \TV(\nu_{n,K},\nu_{n,K+1})
  \le\tfrac12\sqrt{G_d-1}+\tfrac12\sqrt{G_{d+1}-1}
-       +\rho_n+C\eta+o(1).
+       +\rho_n+\eta+o(1).
 \end{equation}
 The last term tends to zero for fixed $K,d,\varepsilon,\eta$ and bounded energies.
 \end{proposition}
@@ -261,9 +261,9 @@ Equivalently generate $V_h$ by selecting a pair $(b,a)$ with weight $w_b$, where
  \#\{a\in\sfset(n/b):(a,b)=1\}
  =\gamma\frac nb\left(1+O_h(Y^{-1})+O_h(\sqrt{R/n})\right).
 \]
-Hence the marginal law of $b$ is at total variation distance $o(1)$ from $\lambda_h$. Also the conditional cofactor law differs from $U_{n/b}$ by $O_h(Y^{-1})$. Indeed $Q(x)\ge c x$ for all sufficiently large $x$, so
+Hence the marginal law of $b$ is at total variation distance $o(1)$ from $\lambda_h$. Also the conditional cofactor law differs from $U_{n/b}$ by $O_h(Y^{-1})$. Indeed $Q(x)\ge x/2$ for all sufficiently large $x$, so
 \[
- \Prob_{U_x}(p\mid a)\le\frac{\lfloor x/p\rfloor}{Q(x)}\le C/p,
+ \Prob_{U_x}(p\mid a)\le\frac{\lfloor x/p\rfloor}{Q(x)}\le 2/p,
 \]
 and a union bound over $p\mid b$ applies, uniformly for $x=n/b\ge n/R$.
 
@@ -302,7 +302,7 @@ Write $e_j$ for the $j$th elementary symmetric sum of the numbers $(1/p)_{p\in\m
 \]
 The distribution of the unordered product conditional on distinctness is exactly $\lambda_h(b)=1/(be_h)$. If $S\subset\mathcal P$ has $r$ elements, then
 \[
- \Prob(S\mid b):=\Prob\left(\prod_{p\in S}p\mid b\right)
+ \pi_S:=\Prob\left(\prod_{p\in S}p\mid b\right)
  \le\frac{(h)_r}{(1-\theta_h)H_0^r}\prod_{p\in S}\frac1p,
 \]
 where $(h)_r=h(h-1)\cdots(h-r+1)$; this follows by bounding the complementary symmetric sum by $H_0^{h-r}/(h-r)!$.
@@ -317,7 +317,7 @@ Apply this to $g=\gcd(b,c)$. The empty subset contributes exactly $1$. For subse
  \sum_{|S|=r}\prod_{p\in S}\frac{p-1}{p^2}
  \le\frac1{(1-\theta_h)^2}\frac{(h^2/H_0)^r}{r!},
 \]
-since $\sum_p(p-1)/p^2\le H_0$. Summing in $r$ proves \eqref{eq:energy}.
+since $\sum_p(p-1)/p^2\le H_0$ and an $r$th elementary symmetric sum of nonnegative numbers is at most the $r$th power of their sum divided by $r!$. Summing in $r$ proves \eqref{eq:energy}.
 \end{proof}
 
 \section{A continuous comparison of adjacent product degrees}
@@ -438,7 +438,7 @@ Plancherel's theorem and Tonelli's theorem imply, for the compactly supported $L
 \begin{equation}\label{eq:half}
  [\widehat g]^2=C_F\int_{\mathbb R}|x|\,|g(x)|^2\dd x,
 \end{equation}
-where $C_F>0$ is an absolute constant. Indeed set $t=s+r$. Plancherel in $s$ gives
+where $C_F=4\pi^2$. Indeed set $t=s+r$. Plancherel in $s$ gives
 \[
  \int|\widehat g(s+r)-\widehat g(s)|^2\dd s
  =2\pi\int|e^{irx}-1|^2|g(x)|^2\dd x.
@@ -448,7 +448,7 @@ Now integrate against $\dd r/r^2$ and use
  \int_{\mathbb R}\frac{|e^{irx}-1|^2}{r^2}\dd r
  =|x|\int_{\mathbb R}\frac{|e^{iu}-1|^2}{u^2}\dd u.
 \]
-The last constant is positive and finite, using $|e^{iu}-1|\le\min(|u|,2)$. This proves \eqref{eq:half}. All the convolutions below are in $L^2$, since convolution with an $L^1$ probability density does not increase the $L^2$ norm.
+The last integral equals $2\pi$; it is finite by $|e^{iu}-1|\le\min(|u|,2)$. This proves \eqref{eq:half}. All the convolutions below are in $L^2$, since convolution with an $L^1$ probability density does not increase the $L^2$ norm.
 
 \emph{Step 3: split the seminorm into large and bounded frequencies.}
 Write $\phi_n=\widehat f_n$, $\phi=\widehat q$ and $u_n=\phi_n^h-\phi^h$. For $|z|,|w|\le\kappa$,
@@ -460,7 +460,7 @@ Thus the contribution to $[u_n]^2$ from pairs with both $|s|>T_0$ and $|t|>T_0$ 
  2h^2\kappa^{2h-2}([\phi_n]^2+[\phi]^2)
  &\le 2C_F h^2\kappa^{2h-2}(J+1)/H.
 \end{align*}
-The contribution from pairs with at least one coordinate in $[-T_0,T_0]$ tends to zero. To justify this at the diagonal, weak convergence and common compact support imply uniform convergence of $\phi_n$ and $\phi_n'$ on each bounded interval. Pointwise convergence follows by testing $e^{itx}$ and $ix e^{itx}$; uniformity follows from their uniformly bounded first and second derivatives. Hence $u_n\to0$ in $C^1$ on bounded intervals. On $[-R,R]^2$, the seminorm integrand is at most $\sup_{[-R,R]}|u_n'|^2$ and its integral tends to zero. On $|s|\le T_0$, $|t|>R>T_0$, use $|u_n|\le2$ to bound the remaining integral, including the transposed region, by $C T_0/(R-T_0)$. Take $n\to\infty$ first, then $R\to\infty$.
+The contribution from pairs with at least one coordinate in $[-T_0,T_0]$ tends to zero. To justify this at the diagonal, weak convergence and common compact support imply uniform convergence of $\phi_n$ and $\phi_n'$ on each bounded interval. Pointwise convergence follows by testing $e^{itx}$ and $ix e^{itx}$, which are bounded and continuous on the common support; uniformity follows from their uniformly bounded first and second derivatives. Hence $u_n\to0$ in $C^1$ on bounded intervals. On $[-T_1,T_1]^2$, the seminorm integrand is at most $\sup_{[-T_1,T_1]}|u_n'|^2$ and its integral tends to zero. On $|s|\le T_0$, $|t|>T_1>T_0$, use $|u_n|\le2$ to bound the remaining integral, including the transposed region, by $C T_0/(T_1-T_0)$. Take $n\to\infty$ first, then $T_1\to\infty$.
 
 Apply \eqref{eq:half} to $g=f_n^{*h}-q^{*h}$ to conclude
 \[
@@ -485,7 +485,7 @@ Let $\mathcal B_h(n)$ contain all products of $h$ distinct primes in $\mathcal P
 where $1\le J\le C(1+\log((d+1)/\eta))$. The constants are absolute.
 \end{proposition}
 \begin{proof}
-Take $a=\min(1/4,\eta/[2(d+1)])$ in the preceding construction. Maximal coupling of the two jittered sum laws, together with Lemmas~\ref{lem:continuous} and \ref{lem:fourier}, bounds the upper limit of the probability of unequal sums by the right side of \eqref{eq:matching}. Here $\kappa^{d-1}\le\exp(-c_0(d-1)/J^2)$.
+Take $a=\eta/[2(d+1)]\le1/4$ in the preceding construction. Maximal coupling of the two jittered sum laws, together with Lemmas~\ref{lem:continuous} and \ref{lem:fourier}, bounds the upper limit of the probability of unequal sums by the right side of \eqref{eq:matching}. Here $\kappa^{d-1}\le\exp(-c_0(d-1)/J^2)$.
 
 Conditionally on each jittered sum, sample the original prime tuple and jitters from their conditional law. These conditional laws exist for the finite tuple space and real jitter variables; equivalently, their densities can be normalized on each value of the sum. This recovers the original independent prime draws on each side. Equality of the jittered sums implies, after multiplication by $L$, that the actual logarithms of the unjittered products differ by at most
 \[
@@ -503,9 +503,9 @@ Couple each marginal to its conditioned law, adding these two $o(1)$ errors to t
 
 \section{Choice of parameters and proof of the main theorem}
 
-We first show the qualitative limit, to make the parameter order explicit. Fix a target tolerance $\tau>0$. Choose $0<\eta\le1$ so that the $C\eta$ term in Proposition~\ref{prop:transfer} is less than $\tau/4$. Keep $\eta$ fixed and let $d$ be sufficiently large that $1/(d+1)$ and the smoothing term in \eqref{eq:matching} total less than $\tau/4$. This is possible because $J=O(\log(d/\eta))$ and
+We first show the qualitative limit, to make the parameter order explicit. Fix a target tolerance $\tau>0$. Choose $0<\eta\le1$ so that the $\eta$ term in Proposition~\ref{prop:transfer} is less than $\tau/4$. Keep $\eta$ fixed and let $d$ be sufficiently large that $1/(d+1)$ and the smoothing term in \eqref{eq:matching} total less than $\tau/4$. This is possible because $J=O(\log(d/\eta))$ and
 \[
- d\sqrt{\log(d/\eta)}\exp\left(-c\frac d{\log^2(d/\eta)}\right)\longrightarrow0.
+ d\sqrt{\log(d/\eta)}\exp\left(-c_0\frac d{\log^2(d/\eta)}\right)\longrightarrow0.
 \]
 Next choose finite $H\ge1$ sufficiently large that the continuous error $[d\log d+(d+1)\log(d+1)]/H$ and the two limiting square-root energy errors total less than $\tau/4$. Lemma~\ref{lem:energy} permits this because those energy errors are bounded by
 \[
@@ -534,7 +534,7 @@ since $(d+1)^2/H\to0$. The continuous comparison and tolerance terms are
 \[
  O\left(\frac{d\log d}H+\frac1d\right)=O((\log K)^{-1/4}).
 \]
-Here $a=1/[2d(d+1)]$ for large $d$, so $J=O(\log d)$ and the smoothing error is
+Here $a=1/[2d(d+1)]$, so $J=O(\log d)$ and the smoothing error is
 \[
  O\left(d\sqrt{\log d}\exp\left(-c_0\frac d{(\log d)^2}\right)\right)=o(1/d).
 \]
@@ -574,16 +574,16 @@ No matrix estimate, singular-vector approximation, or previously obtained Merten
 R. Arratia, \emph{On the amount of dependence in the prime factorization of a uniform random integer}, in Contemporary Combinatorics, Bolyai Society Mathematical Studies \textbf{10} (2002), 29--91. Author version: \url{https://arxiv.org/abs/1305.0941}.
 
 \bibitem{BR}
-V. Bergelson and F. K. Richter, \emph{Dynamical generalizations of the Prime Number Theorem and disjointness of additive and multiplicative semigroup actions}, Duke Mathematical Journal \textbf{171} (2022), no.~15, 3133--3200. \url{https://arxiv.org/abs/2002.03498v3}.
+V. Bergelson and F. K. Richter, \emph{Dynamical generalizations of the Prime Number Theorem and disjointness of additive and multiplicative semigroup actions}, Duke Mathematical Journal \textbf{171} (2022), no.~15, 3133--3200. \url{https://doi.org/10.1215/00127094-2022-0055}. Author version: \url{https://arxiv.org/abs/2002.03498v3}.
 
 \bibitem{Koukoulopoulos}
-D. Koukoulopoulos, \emph{Pretentious multiplicative functions and the prime number theorem for arithmetic progressions}, author manuscript, March 13, 2013. \url{https://dms.umontreal.ca/~koukoulo/documents/publications/pnt.pdf}.
+D. Koukoulopoulos, \emph{Pretentious multiplicative functions and the prime number theorem for arithmetic progressions}, Compositio Mathematica \textbf{149} (2013), no.~7, 1129--1149. \url{https://doi.org/10.1112/S0010437X12000802}.
 
 \bibitem{KlineSpectrum}
 J. Kline, \emph{The singular spectrum of a sparse Mertens matrix}, version 0.1.0, 2026. \url{https://doi.org/10.5281/zenodo.23004980}.
 
 \bibitem{LWWY}
-H. Li, B. Wang, C. Wang, and S. Yi, \emph{Some ergodic theorems over squarefree numbers and squarefull numbers}, Acta Arithmetica \textbf{221} (2025), no.~2, 117--140. \url{https://arxiv.org/abs/2405.18157v2}.
+H. Li, B. Wang, C. Wang, and S. Yi, \emph{Some ergodic theorems over squarefree numbers and squarefull numbers}, Acta Arithmetica \textbf{221} (2025), 117--140. \url{https://doi.org/10.4064/aa240909-18-6}. Author version: \url{https://arxiv.org/abs/2405.18157v2}.
 
 \bibitem{McNamara}
 R. McNamara, \emph{A Dynamical Proof of the Prime Number Theorem}, Hardy--Ramanujan Journal \textbf{44} (2021), published online 2022. \url{https://doi.org/10.46298/hrj.2022.8924}.
@@ -592,6 +592,6 @@ R. McNamara, \emph{A Dynamical Proof of the Prime Number Theorem}, Hardy--Ramanu
 I. Nourdin and G. Poly, \emph{An invariance principle under the total variation distance}, Stochastic Processes and their Applications \textbf{125} (2015), no.~6, 2190--2205. \url{https://doi.org/10.1016/j.spa.2014.12.010}.
 
 \bibitem{Richter}
-F. K. Richter, \emph{A new elementary proof of the Prime Number Theorem}, Bulletin of the London Mathematical Society \textbf{53} (2021), no.~5, 1365--1375. Corrected author version consulted: \url{https://arxiv.org/abs/2002.03255v3}.
+F. K. Richter, \emph{A new elementary proof of the Prime Number Theorem}, Bulletin of the London Mathematical Society \textbf{53} (2021), no.~5, 1365--1375. \url{https://doi.org/10.1112/blms.12503}. The published proof of Proposition~2.2 contains an error corrected in the author version \url{https://arxiv.org/abs/2002.03255v3} (footnote~2); references here are to that version.
 \end{thebibliography}
 \end{document}

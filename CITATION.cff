@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+message: "Please cite Version 0.1.0 of this research repository."
+title: "Total variation under largest-prime deletion"
+type: software
+version: 0.1.0
+authors:
+  - family-names: Kline
+    given-names: Jeffery
+repository-code: "https://github.com/jeff-kline/largest-prime-deletion"
+url: "https://github.com/jeff-kline/largest-prime-deletion"
+license: GPL-3.0-only
+abstract: >-
+  A paper and release repository on deleting the K largest prime factors of a
+  uniformly random squarefree integer at most n. It proves that the total
+  variation distance between the laws of the remaining integer at depths K and
+  K+1 has limit superior in n of order (log K)^(-1/4). The proof extends the
+  multiplier-comparison method of Richter and Bergelson-Richter with a weighted
+  Fourier matching estimate, uniform in the window width, for products of
+  primes from moving windows. Testing against the Moebius function gives
+  M(n)=o(n). The argument does not assume the prime number theorem; it uses
+  elementary prime estimates and Plancherel's theorem. It gives no rate for
+  M(n)/n and no new prime number theorem error term, and the statement of the
+  deletion theorem alone is not claimed as new.
+keywords:
+  - largest prime factor
+  - total variation
+  - squarefree integers
+  - Moebius function
+  - Mertens function
+  - prime number theorem
+references:
+  - type: article
+    title: "A new elementary proof of the Prime Number Theorem"
+    authors:
+      - family-names: Richter
+        given-names: Florian K.
+    journal: "Bulletin of the London Mathematical Society"
+    volume: 53
+    issue: 5
+    year: 2021
+    start: 1365
+    end: 1375
+  - type: article
+    title: "Dynamical generalizations of the Prime Number Theorem and disjointness of additive and multiplicative semigroup actions"
+    authors:
+      - family-names: Bergelson
+        given-names: Vitaly
+      - family-names: Richter
+        given-names: Florian K.
+    journal: "Duke Mathematical Journal"
+    volume: 171
+    issue: 15
+    year: 2022
+    start: 3133
+    end: 3200
