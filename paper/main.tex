@@ -1,0 +1,597 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Total variation under largest-prime deletion},pdfauthor={Jeffery Kline},pdfsubject={Version 0.1.0, release candidate}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\Law}{Law}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Var}{Var}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\sfset}{\mathcal S}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\dd}{\,\mathrm d}
+\title{Total variation under largest-prime deletion}
+\author{Jeffery Kline}
+\date{September 28, 2026\\[3pt]\small Version 0.1.0 (release candidate)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Choose an integer uniformly among the squarefree positive integers at most $n$, and let $\nu_{n,K}$ be the distribution of the integer remaining after deleting its $K$ largest prime factors, stopping at $1$. We prove that $\limsup_{n\to\infty}\TV(\nu_{n,K},\nu_{n,K+1})=O((\log K)^{-1/4})$ as $K\to\infty$. This controls every bounded observable of the remaining integer. The proof develops the multiplier-comparison method of Richter and Bergelson--Richter using prime windows that move with $n$. A weighted Fourier estimate couples reciprocal-weighted products of $d$ and $d+1$ primes at fixed logarithmic resolution, with constants independent of the logarithmic width of the window. A greatest-common-divisor bound and an exact deletion identity transfer this coupling to the remaining integers. Testing against the M\"obius function gives $\sum_{m\le n}\mu(m)=o(n)$ as a consequence. The argument uses elementary prime estimates and Plancherel's theorem, with no prime number theorem assumed. The depth bound concerns the limit in $n$ taken first, so it gives no rate for $\sum_{m\le n}\mu(m)/n$ and no new error term in the prime number theorem.
+\end{abstract}
+
+\section{Statement and structure of the proof}
+
+A positive integer is \emph{squarefree} if no square of a prime divides it. Let
+\[
+ \sfset(x)=\{m\in\mathbb N:m\le x,\ m\text{ squarefree}\},
+ \qquad Q(x)=|\sfset(x)|,
+\]
+and let $U_x$ be the uniform probability measure on this finite set, for $x\ge1$. The integer $1$ is squarefree. Write $\omega(m)$ for the number of distinct prime factors of $m$, and $P^+(m)$ for its largest prime factor when $m>1$. On squarefree integers define
+\[
+ T(1)=1,\qquad T(m)=m/P^+(m)\quad(m>1).
+\]
+The notation $T^k$ means $k$ successive applications of $T$, with $T^0$ the identity. For example,
+\[
+ 210\longmapsto30\longmapsto6\longmapsto2\longmapsto1\longmapsto1.
+\]
+If $N_n$ has law $U_n$, put $\nu_{n,k}=\Law(T^k(N_n))$.
+
+For probability measures $P,Q$ on the same space,
+\[
+ \TV(P,Q)=\sup_A|P(A)-Q(A)|.
+\]
+For discrete laws this is half the sum of the absolute differences of their masses; for densities it is half their $L^1$ distance. A coupling is a joint law with prescribed marginal laws. There is a coupling with probability of unequal outcomes exactly $\TV(P,Q)$: match the common mass first, and couple the remaining masses arbitrarily. We use also
+\begin{equation}\label{eq:tvfacts}
+ \TV(F_*P,F_*Q)\le\TV(P,Q),\qquad
+ |\E_P f-\E_Q f|\le2\TV(P,Q)\quad(|f|\le1),
+\end{equation}
+where $F_*P$ denotes the law of $F(X)$ when $X$ has law $P$.
+
+\begin{theorem}\label{thm:main}
+There is an absolute constant $C$ such that, for all sufficiently large integers $K$,
+\begin{equation}\label{eq:main}
+ \limsup_{n\to\infty}\TV(\nu_{n,K},\nu_{n,K+1})
+ \le C(\log K)^{-1/4}.
+\end{equation}
+In particular,
+\[
+ \lim_{K\to\infty}\limsup_{n\to\infty}
+ \TV(\nu_{n,K},\nu_{n,K+1})=0.
+\]
+\end{theorem}
+
+The M\"obius function is $\mu(1)=1$, $\mu(m)=(-1)^{\omega(m)}$ for squarefree $m$, and $\mu(m)=0$ otherwise. Set $M(n)=\sum_{m\le n}\mu(m)$.
+
+\begin{corollary}\label{cor:mobius}
+$M(n)=o(n)$ as $n\to\infty$.
+\end{corollary}
+
+The proof has three main components. First, products of $d$ large primes and products of $d+1$ large primes serve as divisors by which to bias uniform squarefree sampling. A bound for the expected greatest common divisor of two such products shows that this bias is small. Second, these two product laws can be coupled so that the products have nearly equal sizes. This requires control at a fixed scale in their actual logarithms, not only weak convergence after division by $\log n$. Third, deleting sufficiently many largest prime factors removes all primes in either multiplier. The two constructions then leave the same operation on cofactors with nearly equal cutoffs.
+
+All limits in $n$ below keep the other parameters fixed. Constants denoted $C$ or $c_0$ are absolute unless a subscript states otherwise, and may change from line to line. The depth estimate \eqref{eq:main} gives no rate for $M(n)/n$: the threshold in $n$ is not controlled uniformly in $K$.
+
+\subsection{Relation to earlier work}
+
+The multiplier comparison has a direct precedent in Richter~\cite{Richter}: Proposition~2.1 controls divisor averages by the reciprocal-weighted mean of $\gcd(b,c)-1$, and Proposition~2.2 matches finite sets of primes and products of $k$ primes. Bergelson--Richter~\cite{BR}, Proposition~2.1 and Lemmas~2.2--2.3, combine the same gcd control with matching primes and semiprimes in multiplicative intervals. We use this established averaging principle. The moving, squarefree version needed here is proved in Proposition~\ref{prop:transfer}.
+
+Squarefree sampling is also an established part of this literature: Bergelson--Richter~\cite[Corollary~1.8]{BR} treat it explicitly. Li, Wang, Wang, and Yi~\cite[Theorem~1.7]{LWWY} prove shift invariance of averages of bounded functions of the number of prime factors over squarefree integers. Their Theorem~1.2 also allows specified largest-prime-factor restrictions. Theorem~\ref{thm:main} instead compares the entire integer remaining after deletion. Its total variation bound is uniform over all bounded tests on that integer, including tests chosen separately for each $n$. A theorem about the prime-factor count alone does not provide that control: pushing measures forward to a count contracts total variation, and the converse implication fails in general.
+
+The moving windows address a specific obstacle to applying fixed multipliers directly. If $b>1$ is fixed, its prime factors typically survive any fixed number of largest-prime deletions as $n$ grows; see Remark~\ref{rem:fixed}. Our multipliers have all factors greater than $n^{1/(K+1)}$, so those factors must instead disappear within $K$ deletions. Richter's finite-set existence statement does not itself impose these simultaneous moving lower and upper bounds. Its construction uses separated logarithmic index sets~\cite[Section~3]{Richter}; obtaining the required moving-window version would require additional estimates. This observation rules out a direct substitution of fixed sets, not every possible adaptation of that construction.
+
+The technical contribution developed here is the fixed-resolution matching in Proposition~\ref{prop:matching}. We use all squarefree products of adjacent degrees from one prime window. Lemma~\ref{lem:fourier} bounds the convolution defect independently of $H=\log(\beta/c)$ by cancelling a weighted $L^2$ factor against a weighted Cauchy--Schwarz factor. That uniformity allows $H\gg d^2$, simultaneously making the gcd error small. The comparison between sums and maxima in Lemma~\ref{lem:continuous} supplies the other part of the matching estimate. Plancherel and the fractional seminorm identity are standard tools; the proposed contribution is this parameter-uniform estimate and its use in deletion, rather than the Fourier identity itself.
+
+There are two further relevant comparisons. Arratia~\cite[Sections~3.4--3.5 and Theorems~3,~5]{Arratia} couples random prime factorizations to independent and Poisson--Dirichlet models, with insertion-deletion and logarithmic displacement bounds. These conclusions are different from adjacent-depth total variation; the fine prime-logarithm coupling in his Section~3.4.1 uses a prime number theorem error estimate. Total variation smoothing for sums is classical: Nourdin--Poly~\cite[Theorem~1.2]{NP} revisit Prohorov's theorem for normalized sums of a fixed law. Here the summand law changes with $n$, its jitter radius tends to zero, and uniformity in the window width is required. The cited theorem does not supply these estimates as stated.
+
+McNamara~\cite{McNamara} gives a related dynamical proof using Selberg's symmetry formula. Koukoulopoulos~\cite{Koukoulopoulos} combines elementary estimates with Fourier inversion in a different multiplicative-function approach. Thus neither a dynamical interpretation nor the use of real Fourier analysis is a novelty claim here. The specific result put forward is Theorem~\ref{thm:main}, with M\"obius cancellation as its arithmetic consequence. We have not located this deletion theorem or the stated uniform matching estimate in the works compared above; this is a bounded literature assessment, not an assertion that no equivalent result exists elsewhere.
+
+\section{Elementary counting and prime estimates}
+
+\begin{lemma}[Squarefree multiples]\label{lem:squarefree}
+Let $\gamma=\prod_p(1-p^{-2})>0$. For squarefree $\ell\le n$,
+\begin{equation}\label{eq:sfcount}
+ \#\{m\in\sfset(n):\ell\mid m\}
+ =\frac{\gamma n}{\prod_{p\mid\ell}(p+1)}
+ +O\left(2^{\omega(\ell)}\sqrt{n/\ell}\right).
+\end{equation}
+In particular $Q(x)=\gamma x+O(\sqrt x)$.
+\end{lemma}
+\begin{proof}
+Write $m=\ell a$ and $x=n/\ell$. Such an $m$ is squarefree precisely when $a$ is squarefree and $(a,\ell)=1$. The identity
+\[
+ \ind_{a\text{ squarefree}}=\sum_{r^2\mid a}\mu(r)
+\]
+follows by multiplying the local factors $1-1$ at primes whose squares divide $a$. Inclusion-exclusion gives, for $y\ge0$,
+\[
+ \#\{s\le y:(s,\ell)=1\}
+ =y\prod_{p\mid\ell}(1-p^{-1})+O(2^{\omega(\ell)}).
+\]
+Consequently the desired count equals
+\[
+ x\prod_{p\mid\ell}(1-p^{-1})
+ \sum_{\substack{r\le\sqrt x\\(r,\ell)=1}}\frac{\mu(r)}{r^2}
+ +O(2^{\omega(\ell)}\sqrt x).
+\]
+Extending the absolutely convergent sum to infinity costs $O(\sqrt x)$. Its Euler product is $\gamma\prod_{p\mid\ell}(1-p^{-2})^{-1}$. Multiplication and $x=n/\ell$ give \eqref{eq:sfcount}. No cancellation estimate for $\mu$ is used.
+\end{proof}
+
+\begin{lemma}[Positive reciprocal-prime sum]\label{lem:mertens}
+For a constant $B$,
+\begin{equation}\label{eq:mertens}
+ \sum_{p\le x}\frac1p=\log\log x+B+O(1/\log x)
+ \qquad(x\ge2).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $\vartheta(x)=\sum_{p\le x}\log p$ and let $\Lambda(r)$ equal $\log p$ if $r$ is a positive power of a prime $p$, and zero otherwise. Each prime in $(m,2m]$ divides $\binom{2m}{m}$, so
+\[
+ \vartheta(2m)-\vartheta(m)\le\log\binom{2m}{m}\le2m\log2.
+\]
+Summing over dyadic intervals and using monotonicity yields $\vartheta(x)=O(x)$. Thus
+\[
+ \psi(x):=\sum_{r\le x}\Lambda(r)
+ =\sum_{j\le\log_2x}\vartheta(x^{1/j})=O(x),
+\]
+since the terms with $j\ge2$ total $O(\sqrt x\log x)=O(x)$. Unique factorization gives $\log m=\sum_{r\mid m}\Lambda(r)$, hence
+\[
+ \log(N!)=\sum_{r\le N}\Lambda(r)\lfloor N/r\rfloor.
+\]
+Replacing the floors incurs an error at most $\psi(N)=O(N)$. Integral bounds for $\log(N!)$ now imply
+\[
+ \sum_{r\le x}\frac{\Lambda(r)}r=\log x+O(1).
+\]
+The contribution from prime powers of exponent at least two is bounded by the convergent series $\sum_p\log p/[p(p-1)]$. Therefore
+\[
+ A(x):=\sum_{p\le x}\frac{\log p}{p}=\log x+O(1).
+\]
+Partial summation gives
+\[
+ \sum_{p\le x}\frac1p
+ =\frac{A(x)}{\log x}+\int_2^x\frac{A(t)}{t\log^2t}\dd t.
+\]
+Writing $A(t)=\log t+E(t)$ with $E(t)=O(1)$ proves \eqref{eq:mertens}: the integral involving $E$ converges at infinity, and its remaining tail is $O(1/\log x)$.
+\end{proof}
+
+\begin{lemma}[A short multiplicative interval; cf.~\cite{Richter}, Lemma~3.3]\label{lem:interval}
+For each fixed $1<\sigma<2$,
+\[
+ \pi(\sigma X)-\pi(X)
+ \le b(\sigma)\frac X{\log X}+O_\sigma(1),\qquad
+ b(\sigma)=\sigma\log\sigma-(\sigma-1)\log(\sigma-1).
+\]
+Moreover $b(e^{2a})\le C a(1+\log(1/a))$ for $0<a\le1/4$.
+\end{lemma}
+\begin{proof}
+Put $m=\lfloor X\rfloor$, $k=\lfloor\sigma X\rfloor-m$. For sufficiently large $X$, every prime in $(X,\sigma X]$ is larger than both $m$ and $k$, and occurs in the numerator of $\binom{m+k}{k}$. Therefore
+\[
+ [\pi(\sigma X)-\pi(X)]\log X\le\log\binom{m+k}{k}.
+\]
+The binomial theorem applied with probabilities $m/(m+k)$ and $k/(m+k)$ bounds the right side by
+\[
+ (m+k)\log(m+k)-m\log m-k\log k
+ =Xb(\sigma)+O_\sigma(\log X).
+\]
+This proves the first assertion. The second follows from $e^{2a}-1\asymp a$ and the displayed formula for $b$.
+\end{proof}
+
+\begin{lemma}[Few prime factors have density zero]\label{lem:few}
+For each fixed integer $r$, the number of integers $m\le n$ with $\omega(m)<r$ is $o(n)$.
+\end{lemma}
+\begin{proof}
+Fix a finite set of primes $\mathcal P$ and let $Z(m)=\sum_{p\in\mathcal P}\ind_{p\mid m}$. Under uniform sampling from $\{1,\ldots,n\}$, residue counting gives, as $n\to\infty$,
+\[
+ \E Z\longrightarrow A:=\sum_{p\in\mathcal P}1/p,
+ \qquad \Var Z\longrightarrow\sum_{p\in\mathcal P}(1/p)(1-1/p)\le A.
+\]
+For $A>r$, Chebyshev's inequality bounds the upper density of $Z<r$ by $A/(A-r)^2$. Since $\omega(m)<r$ implies $Z(m)<r$, and $A$ can tend to infinity by Lemma~\ref{lem:mertens}, the result follows. By Lemma~\ref{lem:squarefree}, the same exceptional set has probability $o(1)$ under $U_n$.
+\end{proof}
+
+\begin{remark}[Why fixed multipliers are not deleted]\label{rem:fixed}
+Fix a squarefree $b>1$ and an integer $K\ge1$, and choose $a$ uniformly from the squarefree integers at most $n/b$ that are coprime to $b$. With probability tending to one,
+\[
+ T^K(ab)=bT^K(a).
+\]
+Indeed, put $z=P^+(b)$. If $a$ has fewer than $K$ prime factors exceeding $z$, then $\omega(a)<K+\pi(z)$. Lemma~\ref{lem:few} makes this an exceptional set of size $o(n)$. The eligible cofactors have a positive constant times $n$ elements by Lemma~\ref{lem:squarefree}. Outside the exceptional set the first $K$ deleted factors all belong to $a$ and exceed every factor of $b$, proving the identity. The same assertion holds uniformly over any fixed finite collection of multipliers. Thus the cancellation of the multiplier in \eqref{eq:deleteidentity} needs a moving-factor condition.
+\end{remark}
+
+\section{From nearly equal multipliers to deletion laws}
+
+Fix $K\ge d+1$ and $0<\varepsilon<1/2$. For $h=d,d+1$, let $\mathcal B_h(n)$ be a finite set of squarefree integers with exactly $h$ prime factors, each factor greater than $Y=n^{1/(K+1)}$, and each integer at most $R=n^\varepsilon$. Assign nonnegative weights $w_b$ with
+\[
+ Z_h=\sum_{b\in\mathcal B_h(n)}\frac{w_b}{b}>0,
+ \qquad \lambda_h(b)=\frac{w_b}{bZ_h}.
+\]
+Define the normalized greatest-common-divisor average
+\begin{equation}\label{eq:gcddef}
+ G_h=\sum_{b,c}\lambda_h(b)\lambda_h(c)\gcd(b,c)
+ =\frac1{Z_h^2}\sum_{b,c}\frac{w_bw_c\gcd(b,c)}{bc}.
+\end{equation}
+The sums in \eqref{eq:gcddef} use one fixed degree $h$. In particular $G_h\ge1$.
+
+\begin{proposition}[Multiplier transfer]\label{prop:transfer}
+Assume $G_d,G_{d+1}$ remain bounded as $n\to\infty$. Suppose $B,C$ can be coupled with laws $\lambda_d,\lambda_{d+1}$ so that
+\[
+ \Prob(|\log B-\log C|>\eta)\le\rho_n,
+ \qquad 0<\eta\le1.
+\]
+Then
+\begin{equation}\label{eq:transfer}
+ \TV(\nu_{n,K},\nu_{n,K+1})
+ \le\tfrac12\sqrt{G_d-1}+\tfrac12\sqrt{G_{d+1}-1}
+       +\rho_n+C\eta+o(1).
+\end{equation}
+The last term tends to zero for fixed $K,d,\varepsilon,\eta$ and bounded energies.
+\end{proposition}
+\begin{proof}
+Work first with one degree $h$. For $m\in\sfset(n)$ define
+\[
+ D(m)=\sum_{\substack{b\in\mathcal B_h(n)\\b\mid m}}w_b.
+\]
+Let $V_h$ give $m$ mass $D(m)/(Q(n)\E_{U_n}D)$. Cauchy--Schwarz gives
+\begin{equation}\label{eq:bias}
+ \TV(U_n,V_h)
+ =\tfrac12\E_{U_n}\left|D/\E_{U_n}D-1\right|
+ \le\tfrac12\sqrt{\E_{U_n}D^2/(\E_{U_n}D)^2-1}.
+\end{equation}
+We claim
+\begin{equation}\label{eq:moments}
+ \E_{U_n}D/Z_h=1+o(1),\qquad
+ \E_{U_n}D^2/Z_h^2=G_h+o(1).
+\end{equation}
+Apply \eqref{eq:sfcount} with $\ell=b$ for the first moment and $\ell=\lcm(b,c)$ for the second. These integers have at most $2h$ prime factors, all exceeding $Y$. Therefore $\prod_{p\mid\ell}(p+1)=\ell(1+O_h(Y^{-1}))$. The first-moment counting error, after division by $Z_h$, is
+\[
+ O_h\left(\frac1{\sqrt n Z_h}\sum_b\frac{w_b}{\sqrt b}\right)
+ =O_h(\sqrt{R/n}),
+\]
+because $b\le R$. For the second moment $\ell\le R^2<n$ and $\ell^{-1/2}\le R/\ell$, so the normalized error is at most
+\[
+ \frac{C_h}{\sqrt n Z_h^2}\sum_{b,c}\frac{w_bw_c}{\sqrt{\lcm(b,c)}}
+ \le C_h\frac R{\sqrt n}G_h=o(1).
+\]
+The main terms give \eqref{eq:moments}, including the harmless normalization $Q(n)=\gamma n+O(\sqrt n)$. Thus \eqref{eq:bias} is at most $\frac12\sqrt{G_h-1}+o(1)$.
+
+Equivalently generate $V_h$ by selecting a pair $(b,a)$ with weight $w_b$, where $a\le n/b$ is squarefree and coprime to $b$, and outputting $ba$. Uniformly in $b$, Lemma~\ref{lem:squarefree} gives
+\[
+ \#\{a\in\sfset(n/b):(a,b)=1\}
+ =\gamma\frac nb\left(1+O_h(Y^{-1})+O_h(\sqrt{R/n})\right).
+\]
+Hence the marginal law of $b$ is at total variation distance $o(1)$ from $\lambda_h$. Also the conditional cofactor law differs from $U_{n/b}$ by $O_h(Y^{-1})$. Indeed $Q(x)\ge c x$ for all sufficiently large $x$, so
+\[
+ \Prob_{U_x}(p\mid a)\le\frac{\lfloor x/p\rfloor}{Q(x)}\le C/p,
+\]
+and a union bound over $p\mid b$ applies, uniformly for $x=n/b\ge n/R$.
+
+For an eligible pair, every prime factor of $b$ is deleted in the first $K$ applications of $T$. Otherwise at least $K+1$ distinct factors of $ba$ exceed $n^{1/(K+1)}$, contradicting $ba\le n$. Deletion is in descending prime order, so
+\begin{equation}\label{eq:deleteidentity}
+ T^K(ba)=T^{K-d}(a)\quad(h=d),\qquad
+ T^{K+1}(ba)=T^{K-d}(a)\quad(h=d+1).
+\end{equation}
+These identities include the case where the process reaches $1$. Use them before removing coprimality. Afterwards the two approximating laws both apply $T^{K-d}$ to uniform squarefree cofactors.
+
+On a coupled pair with $|\log b-\log c|\le\eta$, the cutoffs $x=n/b$, $y=n/c$ have ratio at most $e^\eta$. Since the sets $\sfset(x),\sfset(y)$ are nested,
+\[
+ \TV(U_x,U_y)=1-\frac{Q(\min(x,y))}{Q(\max(x,y))}
+ \le1-e^{-\eta}+o(1)\le\eta+o(1),
+\]
+uniformly for $x,y\ge n/R$. On the remaining pairs use the bound $1$. Apply contraction \eqref{eq:tvfacts}, then add the two bias errors and the cofactor approximation errors. This proves \eqref{eq:transfer}.
+\end{proof}
+
+\section{The greatest-common-divisor estimate}
+
+\begin{lemma}\label{lem:energy}
+Let $\mathcal P$ be a finite set of primes,
+\[
+ H_0=\sum_{p\in\mathcal P}1/p,\qquad
+ \delta=\max_{p\in\mathcal P}1/p.
+\]
+Let $\mathcal B_h$ consist of all products of $h$ distinct primes in $\mathcal P$, with weights $w_b=1$. If $\theta_h=\binom h2\delta/H_0<1$, then
+\begin{equation}\label{eq:energy}
+ G_h-1\le\frac{\exp(h^2/H_0)-1}{(1-\theta_h)^2}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Write $e_j$ for the $j$th elementary symmetric sum of the numbers $(1/p)_{p\in\mathcal P}$, with $e_0=1$. Sample $h$ primes independently with probabilities $1/(pH_0)$. A union bound shows that a repeated prime has probability at most $\theta_h$. The probability of all distinct draws is $h!e_h/H_0^h$, hence
+\[
+ e_h\ge (1-\theta_h)H_0^h/h!,\qquad e_j\le H_0^j/j!.
+\]
+The distribution of the unordered product conditional on distinctness is exactly $\lambda_h(b)=1/(be_h)$. If $S\subset\mathcal P$ has $r$ elements, then
+\[
+ \Prob(S\mid b):=\Prob\left(\prod_{p\in S}p\mid b\right)
+ \le\frac{(h)_r}{(1-\theta_h)H_0^r}\prod_{p\in S}\frac1p,
+\]
+where $(h)_r=h(h-1)\cdots(h-r+1)$; this follows by bounding the complementary symmetric sum by $H_0^{h-r}/(h-r)!$.
+
+Let $b,c$ be independent with law $\lambda_h$. For a squarefree integer $g$, expansion of $\prod_{p\mid g}(1+(p-1))$ gives
+\[
+ g=\sum_{S\subset\{p:p\mid g\}}\prod_{p\in S}(p-1).
+\]
+Apply this to $g=\gcd(b,c)$. The empty subset contributes exactly $1$. For subsets of cardinality $r\ge1$, independence bounds the remaining contribution by
+\[
+ \frac{(h)_r^2}{(1-\theta_h)^2H_0^{2r}}
+ \sum_{|S|=r}\prod_{p\in S}\frac{p-1}{p^2}
+ \le\frac1{(1-\theta_h)^2}\frac{(h^2/H_0)^r}{r!},
+\]
+since $\sum_p(p-1)/p^2\le H_0$. Summing in $r$ proves \eqref{eq:energy}.
+\end{proof}
+
+\section{A continuous comparison of adjacent product degrees}
+
+Fix $0<c<\beta$ and put $H=\log(\beta/c)$. Let $X_1,X_2,\ldots$ be independent with density
+\begin{equation}\label{eq:q}
+ q(x)=\frac{\ind_{[c,\beta]}(x)}{Hx}.
+\end{equation}
+Write $S_h=\sum_{i=1}^hX_i$ and $A_h=\max_{1\le i\le h}X_i$. The density of $S_h$ is the $h$-fold convolution $q^{*h}$, where $(f*g)(x)=\int f(y)g(x-y)\dd y$.
+
+\begin{lemma}\label{lem:continuous}
+For every $h\ge1$,
+\[
+ \TV(\Law(S_h),\Law(A_h))\le h\log h/H.
+\]
+Consequently
+\begin{equation}\label{eq:continuous}
+ \TV(q^{*d},q^{*(d+1)})
+ \le\frac{d\log d+(d+1)\log(d+1)}H
+       +\frac{d^d}{(d+1)^{d+1}}.
+\end{equation}
+Here total variation between densities means total variation between their corresponding measures.
+\end{lemma}
+\begin{proof}
+The case $h=1$ is exact. For $h\ge2$, condition on the lower $h-1$ order statistics. Let their largest value be $v$ and their sum be $A$, so $A\le(h-1)v$. The remaining maximum $X$ has conditional density $1/[x\log(\beta/v)]$ on $[v,\beta]$. On the common support of $X$ and $X+A$, the translated density is at least the original density. Thus the conditional total variation equals the original mass in the bottom uncovered interval:
+\[
+ \TV(\Law(X+A),\Law(X))
+ =\min\left(1,\frac{\log(1+A/v)}{\log(\beta/v)}\right)
+ \le\frac{\log h}{\log(\beta/v)}.
+\]
+This formula also covers disjoint supports. The variables $\log(X_i/c)/H$ are uniform on $[0,1]$. Their second largest value $Y=\log(v/c)/H$ has density $h(h-1)y^{h-2}(1-y)$; this follows by choosing the observation near $y$, one above it, and the others below. Therefore
+\[
+ \E\frac1{\log(\beta/v)}
+ =\frac{h(h-1)}H\int_0^1y^{h-2}\dd y=\frac hH.
+\]
+Convexity of total variation under mixtures proves the first assertion.
+
+Under the same logarithmic transformation, the maxima of $d$ and $d+1$ observations have densities $dt^{d-1}$ and $(d+1)t^d$ on $[0,1]$. They cross once, at $d/(d+1)$, and their total variation is
+\[
+ \max_{0\le t\le1}(t^d-t^{d+1})=\frac{d^d}{(d+1)^{d+1}}\le\frac1{d+1}.
+\]
+The triangle inequality through these two maximum laws proves \eqref{eq:continuous}.
+\end{proof}
+
+\section{Smoothing prime logarithms at fixed resolution}
+
+The previous lemma compares continuous laws. Actual squarefree products of different degrees have disjoint supports, by unique factorization. We therefore need a coupling that matches their logarithms within a small positive tolerance, rather than equality of the products. This section supplies it without assuming a prime number theorem.
+
+Fix $0<c<\beta$, $H=\log(\beta/c)\ge1$, and put
+\[
+ L=\log n,\qquad \mathcal P_n=\{p:n^c<p\le n^\beta\},
+ \qquad H_n=\sum_{p\in\mathcal P_n}1/p.
+\]
+Lemma~\ref{lem:mertens} gives $H_n\to H$. Sample a prime $p$ with probabilities $1/(pH_n)$, and let $X_n=\log p/L$. For $c\le t\le\beta$,
+\[
+ \Prob(X_n\le t)\longrightarrow\frac{\log(t/c)}H,
+\]
+so $X_n$ converges weakly to the density $q$ in \eqref{eq:q}.
+
+Fix $0<a\le1/4$ and independently add a uniform random variable on $[-a/L,a/L]$. Denote the resulting density by $f_n$. Its support is contained in $[c-a/L,\beta+a/L]$ and it still converges weakly to $q$.
+
+\begin{lemma}[Density envelope]\label{lem:envelope}
+There is a number $J\ge1$, with $J\le C(1+\log(1/a))$, such that, for all sufficiently large $n$,
+\begin{equation}\label{eq:envelope}
+ f_n(x)\le\frac J{Hx}\quad\text{on its support},\qquad
+ \int x f_n(x)^2\dd x\le\frac JH.
+\end{equation}
+The constants are independent of $c,\beta,H$, though the threshold in $n$ may depend on these parameters and $a$.
+\end{lemma}
+\begin{proof}
+The density is
+\[
+ f_n(x)=\frac L{2aH_n}
+ \sum_{\substack{p\in\mathcal P_n\\|\log p-Lx|\le a}}\frac1p.
+\]
+Use Lemma~\ref{lem:interval} with $X=e^{Lx-a}$ and $\sigma=e^{2a}$. The number of primes in this interval, allowing endpoints, is at most
+\[
+ C a(1+\log(1/a))\frac{e^{Lx}}{Lx}+O_a(1)
+\]
+once $n$ is large, uniformly on the support. Each reciprocal prime is at most $e^{-Lx+a}$. Since $H_n\to H$ and $Lx\to\infty$ uniformly there, the first bound follows after absorbing the endpoint error. Multiply it by $x f_n(x)$ and integrate to obtain the second. Also $\int xq(x)^2\dd x=1/H$.
+\end{proof}
+
+We use the Fourier convention $\widehat g(t)=\int_{\mathbb R}e^{itx}g(x)\dd x$. The following proof states explicitly the analytic dependency.
+
+\begin{lemma}[Weighted convolution estimate]\label{lem:fourier}
+For the densities just constructed there exist absolute $C,c_0>0$ and a number $\kappa<1$ with $1-\kappa\ge c_0/J^2$ such that, for every fixed integer $h\ge1$,
+\begin{equation}\label{eq:convolution}
+ \limsup_{n\to\infty}\|f_n^{*h}-q^{*h}\|_1
+ \le C h\sqrt{J+1}\,\kappa^{h-1}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+\emph{Step 1: a uniform bound away from one at large frequencies.}
+For large $n$ the supports lie in $[c/2,2\beta]$. For any phase $\theta$, frequency $t\ne0$, and $0<\alpha<\pi$, let $E_{t,\theta}$ be the set where $tx-\theta$ modulo $2\pi$ lies in $[-\alpha,\alpha]$. The periodic indicator minus its mean $\alpha/\pi$ has a bounded periodic primitive. Integration by parts against $1/x$ gives, uniformly in $\theta$,
+\[
+ \int_{c/2}^{2\beta}\frac{\ind_{E_{t,\theta}}(x)}x\dd x
+ =\frac\alpha\pi\log(4\beta/c)+O(1/(|t|c)).
+\]
+Using \eqref{eq:envelope}, the probability mass in this phase arc is at most
+\[
+ \frac JH\left(\frac\alpha\pi(H+\log4)+O(1/(|t|c))\right).
+\]
+Since $H\ge1$, choose $\alpha=A/J$ for a sufficiently small absolute $A>0$, then choose a finite threshold $T_0=T_0(c,\beta,H,J)$ so that this bound is at most $1/2$ for $|t|>T_0$. The same argument applies to $q$.
+
+Rotate $\widehat f_n(t)$ onto the positive real axis. At least half the probability lies outside the arc of half-width $\alpha$ centered on this direction; there the real part of the rotated integrand is at most $\cos\alpha$. Hence
+\begin{equation}\label{eq:gap}
+ |\widehat f_n(t)|,|\widehat q(t)|\le
+ \kappa:=1-\tfrac12(1-\cos\alpha),\qquad |t|>T_0.
+\end{equation}
+In particular $1-\kappa\ge c_0/J^2$.
+
+\emph{Step 2: the weighted Fourier identity.}
+For a function $v$ on the frequency line define
+\[
+ [v]^2=\iint_{\mathbb R^2}\frac{|v(s)-v(t)|^2}{|s-t|^2}\dd s\dd t.
+\]
+Plancherel's theorem and Tonelli's theorem imply, for the compactly supported $L^2$ functions $g$ used here,
+\begin{equation}\label{eq:half}
+ [\widehat g]^2=C_F\int_{\mathbb R}|x|\,|g(x)|^2\dd x,
+\end{equation}
+where $C_F>0$ is an absolute constant. Indeed set $t=s+r$. Plancherel in $s$ gives
+\[
+ \int|\widehat g(s+r)-\widehat g(s)|^2\dd s
+ =2\pi\int|e^{irx}-1|^2|g(x)|^2\dd x.
+\]
+Now integrate against $\dd r/r^2$ and use
+\[
+ \int_{\mathbb R}\frac{|e^{irx}-1|^2}{r^2}\dd r
+ =|x|\int_{\mathbb R}\frac{|e^{iu}-1|^2}{u^2}\dd u.
+\]
+The last constant is positive and finite, using $|e^{iu}-1|\le\min(|u|,2)$. This proves \eqref{eq:half}. All the convolutions below are in $L^2$, since convolution with an $L^1$ probability density does not increase the $L^2$ norm.
+
+\emph{Step 3: split the seminorm into large and bounded frequencies.}
+Write $\phi_n=\widehat f_n$, $\phi=\widehat q$ and $u_n=\phi_n^h-\phi^h$. For $|z|,|w|\le\kappa$,
+\[
+ |z^h-w^h|\le h\kappa^{h-1}|z-w|.
+\]
+Thus the contribution to $[u_n]^2$ from pairs with both $|s|>T_0$ and $|t|>T_0$ is at most
+\begin{align*}
+ 2h^2\kappa^{2h-2}([\phi_n]^2+[\phi]^2)
+ &\le 2C_F h^2\kappa^{2h-2}(J+1)/H.
+\end{align*}
+The contribution from pairs with at least one coordinate in $[-T_0,T_0]$ tends to zero. To justify this at the diagonal, weak convergence and common compact support imply uniform convergence of $\phi_n$ and $\phi_n'$ on each bounded interval. Pointwise convergence follows by testing $e^{itx}$ and $ix e^{itx}$; uniformity follows from their uniformly bounded first and second derivatives. Hence $u_n\to0$ in $C^1$ on bounded intervals. On $[-R,R]^2$, the seminorm integrand is at most $\sup_{[-R,R]}|u_n'|^2$ and its integral tends to zero. On $|s|\le T_0$, $|t|>R>T_0$, use $|u_n|\le2$ to bound the remaining integral, including the transposed region, by $C T_0/(R-T_0)$. Take $n\to\infty$ first, then $R\to\infty$.
+
+Apply \eqref{eq:half} to $g=f_n^{*h}-q^{*h}$ to conclude
+\[
+ \limsup_n\int x|f_n^{*h}(x)-q^{*h}(x)|^2\dd x
+ \le2h^2\kappa^{2h-2}(J+1)/H.
+\]
+This difference is supported in $[h(c-a/L),h(\beta+a/L)]$, which is positive for large $n$. Weighted Cauchy--Schwarz gives
+\[
+ \|g\|_1^2\le\left(\int x|g(x)|^2\dd x\right)
+ \left(\int_{h(c-a/L)}^{h(\beta+a/L)}\frac{\dd x}x\right).
+\]
+The second factor tends to $H$. Its cancellation with the factor $1/H$ above proves \eqref{eq:convolution}.
+\end{proof}
+
+\begin{proposition}[Coupling actual prime products]\label{prop:matching}
+Let $\mathcal B_h(n)$ contain all products of $h$ distinct primes in $\mathcal P_n$, with harmonic law proportional to $1/b$. For fixed $d\ge1$ and $0<\eta\le1$, there is a coupling of the laws of degrees $d,d+1$ for which
+\begin{align}\label{eq:matching}
+ \limsup_n\Prob(|\log B-\log C|>\eta)
+ \le{}&\frac{d\log d+(d+1)\log(d+1)}H+\frac1{d+1}\notag\\
+ &+C(d+1)\sqrt{J+1}\exp\left(-\frac{c_0(d-1)}{J^2}\right),
+\end{align}
+where $1\le J\le C(1+\log((d+1)/\eta))$. The constants are absolute.
+\end{proposition}
+\begin{proof}
+Take $a=\min(1/4,\eta/[2(d+1)])$ in the preceding construction. Maximal coupling of the two jittered sum laws, together with Lemmas~\ref{lem:continuous} and \ref{lem:fourier}, bounds the upper limit of the probability of unequal sums by the right side of \eqref{eq:matching}. Here $\kappa^{d-1}\le\exp(-c_0(d-1)/J^2)$.
+
+Conditionally on each jittered sum, sample the original prime tuple and jitters from their conditional law. These conditional laws exist for the finite tuple space and real jitter variables; equivalently, their densities can be normalized on each value of the sum. This recovers the original independent prime draws on each side. Equality of the jittered sums implies, after multiplication by $L$, that the actual logarithms of the unjittered products differ by at most
+\[
+ da+(d+1)a=(2d+1)a<\eta.
+\]
+Thus the coupling controls actual logarithms, not merely logarithms divided by $\log n$.
+
+Finally condition each tuple on having distinct primes. The probability of a repetition for degree $h$ is at most
+\[
+ \binom h2\sum_{p\in\mathcal P_n}\left(\frac1{pH_n}\right)^2
+ \le\binom h2\frac{n^{-c}}{H_n}=o(1).
+\]
+Couple each marginal to its conditioned law, adding these two $o(1)$ errors to the failure probability. On forgetting order, a distinct tuple has product probability proportional to $h!/b$, which is precisely the stated harmonic law. This proves the proposition.
+\end{proof}
+
+\section{Choice of parameters and proof of the main theorem}
+
+We first show the qualitative limit, to make the parameter order explicit. Fix a target tolerance $\tau>0$. Choose $0<\eta\le1$ so that the $C\eta$ term in Proposition~\ref{prop:transfer} is less than $\tau/4$. Keep $\eta$ fixed and let $d$ be sufficiently large that $1/(d+1)$ and the smoothing term in \eqref{eq:matching} total less than $\tau/4$. This is possible because $J=O(\log(d/\eta))$ and
+\[
+ d\sqrt{\log(d/\eta)}\exp\left(-c\frac d{\log^2(d/\eta)}\right)\longrightarrow0.
+\]
+Next choose finite $H\ge1$ sufficiently large that the continuous error $[d\log d+(d+1)\log(d+1)]/H$ and the two limiting square-root energy errors total less than $\tau/4$. Lemma~\ref{lem:energy} permits this because those energy errors are bounded by
+\[
+ \tfrac12\sqrt{e^{d^2/H}-1}
+ +\tfrac12\sqrt{e^{(d+1)^2/H}-1}.
+\]
+Set $\varepsilon=1/8$, $\beta=1/[8(d+1)]$, and $c=\beta e^{-H}$. Choose a fixed integer $K\ge d+1$ with $1/(K+1)<c$. Only now let $n\to\infty$.
+
+All multipliers in either degree have size at most $n^{1/8}$, and every factor exceeds $n^c>n^{1/(K+1)}$. Moreover $H_n\to H$ and $\delta_n\le n^{-c}$, so the collision term $\theta_h$ of Lemma~\ref{lem:energy} tends to zero. Propositions~\ref{prop:matching} and \ref{prop:transfer} therefore give
+\[
+ \limsup_n\TV(\nu_{n,K},\nu_{n,K+1})<\tau.
+\]
+For each $n$, $\nu_{n,k+1}=T_*\nu_{n,k}$; thus \eqref{eq:tvfacts} makes adjacent total variation nonincreasing in $k$. An arbitrarily small bound at a chosen fixed depth proves the qualitative limit.
+
+For the quantitative assertion, take any sufficiently large fixed integer $K$ and set
+\begin{equation}\label{eq:parameters}
+ d=\lfloor(\log K)^{1/4}\rfloor,\quad \eta=1/d,\quad
+ H=\tfrac12\log K,\quad
+ \beta=\frac1{8(d+1)},\quad c=\beta K^{-1/2}.
+\end{equation}
+Then $\log(\beta/c)=H$, $K\ge d+1$, and $c>1/(K+1)$ for sufficiently large $K$. Both degrees still give products at most $n^{1/8}$. After taking the upper limit in $n$, Lemma~\ref{lem:energy} bounds the two square-root energy errors by
+\[
+ O(d/\sqrt H)=O((\log K)^{-1/4}),
+\]
+since $(d+1)^2/H\to0$. The continuous comparison and tolerance terms are
+\[
+ O\left(\frac{d\log d}H+\frac1d\right)=O((\log K)^{-1/4}).
+\]
+Here $a=1/[2d(d+1)]$ for large $d$, so $J=O(\log d)$ and the smoothing error is
+\[
+ O\left(d\sqrt{\log d}\exp\left(-c_0\frac d{(\log d)^2}\right)\right)=o(1/d).
+\]
+Insert these estimates into \eqref{eq:transfer}. All constants in these bounds are absolute; only the threshold for taking $n$ large depends on the fixed parameters. This proves Theorem~\ref{thm:main}.
+
+\section{M\"obius cancellation}
+
+\begin{proof}[Proof of Corollary~\ref{cor:mobius}]
+Fix $K$. For squarefree $m$ with at least $K+1$ prime factors,
+\[
+ \mu(T^K(m))=(-1)^K\mu(m),\qquad
+ \mu(T^{K+1}(m))=(-1)^{K+1}\mu(m).
+\]
+By Lemma~\ref{lem:few}, the excluded integers have probability $o(1)$ under $U_n$. Since the sum of $\mu$ over squarefree integers at most $n$ is $M(n)$, subtraction gives
+\[
+ \E_{\nu_{n,K}}\mu-\E_{\nu_{n,K+1}}\mu
+ =2(-1)^K\frac{M(n)}{Q(n)}+o(1).
+\]
+The function $\mu$ is bounded in absolute value by $1$. Therefore \eqref{eq:tvfacts} implies
+\[
+ \limsup_{n\to\infty}\frac{|M(n)|}{Q(n)}
+ \le\limsup_{n\to\infty}\TV(\nu_{n,K},\nu_{n,K+1}).
+\]
+Let $K\to\infty$ and apply Theorem~\ref{thm:main}. Finally $Q(n)=\gamma n+O(\sqrt n)$, proving $M(n)=o(n)$.
+\end{proof}
+
+\section{Dependencies and scope}
+
+The argument through $M(n)=o(n)$ is complete modulo standard measure-theoretic facts and Plancherel's theorem, used explicitly in Lemma~\ref{lem:fourier}. The fractional seminorm identity needed there is derived in the proof. The arithmetic inputs---squarefree counting, the reciprocal-prime sum, a short-interval upper bound, and the scarcity of integers with boundedly many prime factors---are proved in Section~2. In particular, the positive reciprocal-prime estimate is not a signed M\"obius cancellation assumption.
+
+The conclusion is classically equivalent to the prime number theorem, and that equivalence may be taken as known. We make no claim here of a proof using only elementary calculus: the Fourier step remains part of the argument. Nor does the depth bound provide a new error term for $M(n)$ or $\pi(n)$. Obtaining such an error term would require uniform control of the $n$ thresholds through the smoothing and parameter choices.
+
+No matrix estimate, singular-vector approximation, or previously obtained Mertens bound is used. The map $T$ is the parent map of the tree on squarefree integers behind the sparse Mertens matrix studied in~\cite{KlineSpectrum}; the present argument does not depend on that work. The literature comparison in Section~1 identifies the established multiplier method and the additional distributional and uniformity claims made here. A stronger priority claim would require further comparison of those precise claims, rather than treating another derivation of $M(n)=o(n)$ as sufficient evidence of novelty.
+
+\begin{thebibliography}{9}
+\bibitem{Arratia}
+R. Arratia, \emph{On the amount of dependence in the prime factorization of a uniform random integer}, in Contemporary Combinatorics, Bolyai Society Mathematical Studies \textbf{10} (2002), 29--91. Author version: \url{https://arxiv.org/abs/1305.0941}.
+
+\bibitem{BR}
+V. Bergelson and F. K. Richter, \emph{Dynamical generalizations of the Prime Number Theorem and disjointness of additive and multiplicative semigroup actions}, Duke Mathematical Journal \textbf{171} (2022), no.~15, 3133--3200. \url{https://arxiv.org/abs/2002.03498v3}.
+
+\bibitem{Koukoulopoulos}
+D. Koukoulopoulos, \emph{Pretentious multiplicative functions and the prime number theorem for arithmetic progressions}, author manuscript, March 13, 2013. \url{https://dms.umontreal.ca/~koukoulo/documents/publications/pnt.pdf}.
+
+\bibitem{KlineSpectrum}
+J. Kline, \emph{The singular spectrum of a sparse Mertens matrix}, version 0.1.0, 2026. \url{https://doi.org/10.5281/zenodo.23004980}.
+
+\bibitem{LWWY}
+H. Li, B. Wang, C. Wang, and S. Yi, \emph{Some ergodic theorems over squarefree numbers and squarefull numbers}, Acta Arithmetica \textbf{221} (2025), no.~2, 117--140. \url{https://arxiv.org/abs/2405.18157v2}.
+
+\bibitem{McNamara}
+R. McNamara, \emph{A Dynamical Proof of the Prime Number Theorem}, Hardy--Ramanujan Journal \textbf{44} (2021), published online 2022. \url{https://doi.org/10.46298/hrj.2022.8924}.
+
+\bibitem{NP}
+I. Nourdin and G. Poly, \emph{An invariance principle under the total variation distance}, Stochastic Processes and their Applications \textbf{125} (2015), no.~6, 2190--2205. \url{https://doi.org/10.1016/j.spa.2014.12.010}.
+
+\bibitem{Richter}
+F. K. Richter, \emph{A new elementary proof of the Prime Number Theorem}, Bulletin of the London Mathematical Society \textbf{53} (2021), no.~5, 1365--1375. Corrected author version consulted: \url{https://arxiv.org/abs/2002.03255v3}.
+\end{thebibliography}
+\end{document}
