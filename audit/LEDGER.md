@@ -117,3 +117,12 @@ auxiliary state matched byte-for-byte; all 14 rendered pages were inspected.
 The revised manifest was checked. See VERIFICATION.md for the current PDF
 hash. ADMISSION.md records the need to refreeze and repeat the committed-archive
 check; the previous audit reports remain unchanged as historical evidence.
+
+## Title change — 2026-09-29
+
+At the author's request the title changed from "Total variation under
+largest-prime deletion" to "The prime number theorem via largest-prime
+deletion". It changed in `paper/main.tex` (title and PDF metadata),
+`README.md`, `CITATION.cff`, and `VERIFICATION.md`. Earlier audit reports keep
+the old title as historical records. The repository slug is unchanged. The
+body text is unchanged; the PDF was rebuilt (14 pages, `make check` PASS).

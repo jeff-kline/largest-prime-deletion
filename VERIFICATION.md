@@ -42,7 +42,7 @@ shasum -a 256 -c MANIFEST.sha256
 `make check` output:
 
 ```text
-Title:           Total variation under largest-prime deletion
+Title:           The prime number theorem via largest-prime deletion
 Subject:         Version 0.1.0, release candidate
 Author:          Jeffery Kline
 Pages:           14
@@ -79,7 +79,8 @@ review is not a fresh proof audit.
   produced identical PDF bytes.
 - `make check` passed: 14 pages, no TeX warnings or bad boxes, no unresolved
   references. All 14 rendered pages were inspected for layout.
-- Revised PDF SHA-256: `19d9e2f0a9ea82a0619d1dc0165199290f9c814f736b87002909404b3f4bd72a`.
+- Revised PDF SHA-256 (committed at `f75f465`): `19d9e2f0a9ea82a0619d1dc0165199290f9c814f736b87002909404b3f4bd72a`; a clean `git archive` rebuild of `f75f465` reproduced it.
+- Title changed 2026-09-29 to "The prime number theorem via largest-prime deletion"; rebuilt twice with identical bytes, `make check` PASS, title block inspected. PDF SHA-256: `bb59bd84ba633980aad5c1df93d233ebca0cd5529a6309fb6912e0c3c1495e1f`.
 - The manifest was regenerated and checked after the prose and record edits.
 - These edits are not committed or pushed. A clean committed-archive rebuild
   remains part of refreezing the candidate.

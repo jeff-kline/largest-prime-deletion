@@ -1,4 +1,4 @@
-# Total variation under largest-prime deletion
+# The prime number theorem via largest-prime deletion
 
 Jeffery Kline
 

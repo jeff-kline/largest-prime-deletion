@@ -57,7 +57,7 @@ corpus.
 | Check | Status | Evidence or residual |
 |---|---|---|
 | Reproduction commands and pinned tools | PASS | `VERIFICATION.md` |
-| Deterministic build from a clean archive | PENDING REFREEZE | Prior candidate passed. The revised source built twice from empty auxiliary state with identical bytes (14 pages; SHA-256 `19d9e2f0a9ea82a0619d1dc0165199290f9c814f736b87002909404b3f4bd72a`); a clean committed-archive check remains to be rerun. |
+| Deterministic build from a clean archive | PENDING REFREEZE | Prior candidate passed. The revised source built twice from empty auxiliary state with identical bytes (14 pages; SHA-256 `bb59bd84ba633980aad5c1df93d233ebca0cd5529a6309fb6912e0c3c1495e1f`); a clean committed-archive check remains to be rerun. |
 | Complete tracked-file manifest | PASS | `MANIFEST.sha256` |
 | Hygiene: credentials, private paths, placeholders | PASS | Tracked-tree and history scan, recorded in `audit/LEDGER.md` |
 | Correction, withdrawal, and supersession policy | PASS | `CORRECTIONS.md` |
