@@ -2,7 +2,7 @@
 
 Jeffery Kline
 
-**Version 0.1.0 — candidate under revision.** No tag, archive, or DOI exists yet;
+**Version 0.1.0 — release candidate.** No tag, archive, or DOI exists yet;
 there is no stable citation for this version. Status is tracked in
 [ADMISSION.md](ADMISSION.md) under the project's
 [public research standard](https://jeff-kline.github.io/posts/research-program/index.html).

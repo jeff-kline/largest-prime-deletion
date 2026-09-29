@@ -1,6 +1,6 @@
 # Admission record
 
-**Current state:** DRAFT (prose revision of the private 0.1.0 candidate; pending refreeze; not tagged or archived)
+**Current state:** CANDIDATE (refrozen 2026-09-29 after the title and prose revision; private repository; not tagged or archived)
 
 **Version:** 0.1.0
 
@@ -50,14 +50,14 @@ corpus.
 | Title, author, version, and status agree | PASS | README, PDF title page and metadata, `CITATION.cff`, this file |
 | Adversarial checking | PASS | Isolated failure search NOT-BROKEN; fresh full proof audit VERIFIED; all findings dispositioned in `audit/LEDGER.md`. These are AI audits, not peer review. The integrated diff received its own read-only check (`audit/reports/integration-check.md`, PARTIAL on record gaps only; dispositions in the ledger) |
 
-**A1 gate:** reopened for the 2026-09-29 prose revision. Abstract, introduction, README, and citation abstract were aligned in a local editorial review; theorem statements, equations, and proof bodies are unchanged. Earlier audit PASS rows above describe the prior candidate. Refreeze the revised tree before release.
+**A1 gate:** PASS. The 2026-09-29 revision retitled the paper and led the abstract, introduction, README, and citation abstract with the prime number theorem in its Möbius form. Theorem statements, equations, and proof bodies are unchanged. A fresh read-only check of the revised claim surfaces (`audit/reports/refreeze-claim-check.md`) found them consistent; its dispositions are in `audit/LEDGER.md`. Any material claim edit reopens this gate.
 
 ## R1 — release and stewardship
 
 | Check | Status | Evidence or residual |
 |---|---|---|
 | Reproduction commands and pinned tools | PASS | `VERIFICATION.md` |
-| Deterministic build from a clean archive | PENDING REFREEZE | Prior candidate passed. The revised source built twice from empty auxiliary state with identical bytes (14 pages; SHA-256 `bb59bd84ba633980aad5c1df93d233ebca0cd5529a6309fb6912e0c3c1495e1f`); a clean committed-archive check remains to be rerun. |
+| Deterministic build from a clean archive | PASS | `git archive b78722d` extraction rebuilds `paper/main.pdf` byte-identically: 14 pages, SHA-256 `bb59bd84ba633980aad5c1df93d233ebca0cd5529a6309fb6912e0c3c1495e1f`. The refreeze commit changes records only |
 | Complete tracked-file manifest | PASS | `MANIFEST.sha256` |
 | Hygiene: credentials, private paths, placeholders | PASS | Tracked-tree and history scan, recorded in `audit/LEDGER.md` |
 | Correction, withdrawal, and supersession policy | PASS | `CORRECTIONS.md` |
@@ -74,9 +74,9 @@ and Zenodo archive, and verification of the downloaded record.
 
 | Action | Owner | Status |
 |---|---|---|
-| Local edits, builds, audits | release agent | prior candidate done; 2026-09-29 editorial revision awaits refreeze |
-| Create GitHub repository `jeff-kline/largest-prime-deletion` | prior release agent | private repository created, per author report |
-| Push `main` | prior release agent | prior candidate pushed, per author report; editorial revision not pushed |
+| Local edits, builds, audits | release agent | done; refrozen 2026-09-29 |
+| Create GitHub repository `jeff-kline/largest-prime-deletion` | release agent, authorized by author | done 2026-09-29 (private) |
+| Push `main` | release agent, authorized by author | done; the refrozen candidate is pushed with this commit |
 | Enable the repository in Zenodo (web portal) | author | not done |
 | Annotated tag `v0.1.0` and GitHub Release | author approval required | not done |
 | Zenodo record verification | release agent, after the release | not done |

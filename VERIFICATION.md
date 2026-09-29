@@ -82,5 +82,6 @@ review is not a fresh proof audit.
 - Revised PDF SHA-256 (committed at `f75f465`): `19d9e2f0a9ea82a0619d1dc0165199290f9c814f736b87002909404b3f4bd72a`; a clean `git archive` rebuild of `f75f465` reproduced it.
 - Title changed 2026-09-29 to "The prime number theorem via largest-prime deletion"; rebuilt twice with identical bytes, `make check` PASS, title block inspected. PDF SHA-256: `bb59bd84ba633980aad5c1df93d233ebca0cd5529a6309fb6912e0c3c1495e1f`.
 - The manifest was regenerated and checked after the prose and record edits.
-- These edits are not committed or pushed. A clean committed-archive rebuild
-  remains part of refreezing the candidate.
+- Refreeze (2026-09-29): `git archive b78722d` was extracted into an empty
+  scratch directory. `make paper` and `make check` succeeded, and the rebuilt
+  PDF was byte-identical (`bb59bd84ba633980aad5c1df93d233ebca0cd5529a6309fb6912e0c3c1495e1f`). The refreeze commit changes records only.

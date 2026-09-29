@@ -126,3 +126,19 @@ deletion". It changed in `paper/main.tex` (title and PDF metadata),
 `README.md`, `CITATION.cff`, and `VERIFICATION.md`. Earlier audit reports keep
 the old title as historical records. The repository slug is unchanged. The
 body text is unchanged; the PDF was rebuilt (14 pages, `make check` PASS).
+
+## Refreeze claim check — 2026-09-29
+
+`reports/refreeze-claim-check.md` (mid-tier agent, fresh context, read-only,
+commit `b78722d`) found the title, author, version, qualifications, credit,
+and cross-references consistent. Overall PARTIAL:
+
+| ID | Finding | Disposition |
+|---|---|---|
+| R-F1–F4 | "proves the prime number theorem in its equivalent form M(n)=o(n)" called an overclaim in the abstract, the Section 1 opener, the README, and CITATION.cff | Declined: the wording names the proved form, and the paper (Section 1, Section 9) and README state that the classical equivalence is taken as known. It is author-approved wording and is accurate |
+| R-F5 | CFF message "Please cite Version 0.1.0" | Declined: the message must be timeless for Zenodo import (same as I8) |
+| R-F6 | README status "candidate under revision" | Fixed: "release candidate" |
+| R-F7–F14 | optional: title reading, abstract contribution sentence, ADMISSION principal-claim detail, "process-separated", "passes", Section 9 n-limit, PDF CreationDate, record wording | No change. F13 is not a discrepancy: the CreationDate 2026-09-27 19:00 CDT is SOURCE_DATE_EPOCH 2026-09-28 00:00 UTC |
+
+Refreeze: `git archive b78722d` rebuilds the PDF byte-identically. The records
+were updated to CANDIDATE and the manifest was regenerated.
