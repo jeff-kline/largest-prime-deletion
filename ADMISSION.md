@@ -84,8 +84,6 @@ audit; the 2026-09-29 title and prose revision was checked separately.
 - The prior-art comparison is bounded. A PNT-based derivation of the deletion
   statement, a moving-window variant of Richter's construction, and several
   unread originals remain open comparisons.
-- The public-site listing is deferred by the author and is not part of this
-  admission.
 
 ## External actions
 
@@ -98,4 +96,4 @@ audit; the 2026-09-29 title and prose revision was checked separately.
 | Annotated tag `v0.1.0` and GitHub Release | release agent, authorized by author | done 2026-09-29T10:50Z |
 | Zenodo record verification | release agent | done 2026-09-29 |
 | Living metadata commit | release agent, authorized by author | done with this commit |
-| Public-site listing on jeff-kline.github.io | author approval required | deferred by author |
+| Public-site listing on jeff-kline.github.io | release agent, authorized by author | done 2026-09-29: site commit `0917fa1`, deployed; live HTML shows the title, the author's blurb, the repository link, and the version DOI |

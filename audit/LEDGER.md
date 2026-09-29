@@ -157,3 +157,14 @@ were updated to CANDIDATE and the manifest was regenerated.
 - Living metadata (README, CITATION.cff, paper title page and metadata,
   CORRECTIONS, VERIFICATION, ADMISSION) updated to ADMITTED at the author's
   direction. The site listing was deferred.
+
+## Site listing — 2026-09-29
+
+The author approved the display title "Prime number theorem via largest-prime
+deletion" and the blurb verbatim. Site commit `0917fa1` added the landing-page
+entry, tagged number theory, with the title linking to the repository and a
+separate link to the version DOI. Preflight passed. The layout was checked at
+1280, 777, and 390 px; a non-breaking hyphen keeps "largest-prime deletion"
+together. The GitHub Pages build of `0917fa1` completed, and the live HTML
+contains the title, the exact blurb, the repository link, and
+`10.5281/zenodo.23038366`.
