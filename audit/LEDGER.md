@@ -99,3 +99,21 @@ name, scratch and agent-tool directories, placeholder markers (TODO, XXX, TBD),
 and personal email addresses, run over all tracked files except LICENSE, and over every commit in the history
 (`git rev-list --all`). Result after the redaction above: no matches. The scan
 is rerun on the frozen commit.
+
+## Editorial revision — 2026-09-29
+
+At the author's request, the abstract, opening prose, README, and citation
+abstract now foreground the PNT proof in its equivalent Möbius form. The
+unclear phrase about transferring a coupling through an exact deletion
+identity was replaced with the explicit comparison: d versus d+1 multiplier
+primes and K versus K+1 deletions leave K-d cofactor deletions on both sides.
+The README was shortened and aligned with the abstract; unresolved prior-art
+comparisons and the Plancherel and rate qualifications remain visible.
+
+This is an editorial review, not a new proof or literature audit. Proof bodies,
+equations, and mathematical assertions were preserved. The optional clarity
+issue C6 in the earlier claim/prose audit is addressed. Two builds from empty
+auxiliary state matched byte-for-byte; all 14 rendered pages were inspected.
+The revised manifest was checked. See VERIFICATION.md for the current PDF
+hash. ADMISSION.md records the need to refreeze and repeat the committed-archive
+check; the previous audit reports remain unchanged as historical evidence.

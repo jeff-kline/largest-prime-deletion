@@ -10,18 +10,17 @@ repository-code: "https://github.com/jeff-kline/largest-prime-deletion"
 url: "https://github.com/jeff-kline/largest-prime-deletion"
 license: GPL-3.0-only
 abstract: >-
-  A paper and release repository on deleting the K largest prime factors of a
-  uniformly random squarefree integer at most n. It proves that the total
-  variation distance between the laws of the remaining integer at depths K and
-  K+1 has limit superior in n of order (log K)^(-1/4). The proof extends the
-  multiplier-comparison method of Richter and Bergelson-Richter with a weighted
-  Fourier matching estimate, uniform in the window width, for products of
-  primes from moving windows. Testing against the Moebius function gives
-  M(n)=o(n). The argument does not assume the prime number theorem; it uses
-  elementary prime estimates and Plancherel's theorem. It gives no rate for
-  M(n)/n and no new prime number theorem error term, and the statement of the
-  deletion theorem alone is not claimed as new; the rate is not claimed to be
-  sharp.
+  A proof of the prime number theorem in its equivalent form M(n)=o(n),
+  obtained by comparing successive deletions of largest prime factors from
+  uniformly sampled squarefree integers. The limit superior in n of the total
+  variation distance between deletion depths K and K+1 is O((log K)^(-1/4)).
+  The proof develops the multiplier-comparison method of Richter and
+  Bergelson-Richter using a Fourier matching estimate for products of adjacent
+  degrees, uniform in the logarithmic width of a moving prime window. It uses
+  elementary prime estimates and Plancherel's theorem without assuming the
+  prime number theorem. The limit in n is taken first; no rate for M(n)/n or
+  new prime-counting error term is obtained. The statement of the deletion
+  theorem alone is not claimed as new, and the depth rate is not claimed sharp.
 keywords:
   - largest prime factor
   - total variation

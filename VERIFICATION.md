@@ -1,12 +1,13 @@
 # Verification record — version 0.1.0 (release candidate)
 
-Recorded 2026-09-28.
+Initial candidate recorded 2026-09-28; prose revision checked 2026-09-29.
 
 ## What is verified here
 
-This record covers artifact consistency and reproducibility. The document
-builds deterministically from a clean checkout, its TeX log is clean, and every
-tracked file matches the manifest. It does not verify proofs. The proof audits,
+This record covers artifact consistency and reproducibility. The current revised source builds deterministically from empty auxiliary state,
+its TeX log is clean, and every manifest entry matches. The earlier candidate
+also passed a clean committed-archive rebuild; that check must be repeated
+after the revised tree is committed. It does not verify proofs. The proof audits,
 source comparisons, and their dispositions are in `audit/LEDGER.md` and
 `audit/reports/`.
 
@@ -52,13 +53,13 @@ check: PASS (document consistency only; not a proof check)
 references, rerun requests, a page count other than 14, or unresolved `??` in
 the PDF text.
 
-## Reproduction evidence
+## Earlier candidate reproduction evidence (2026-09-28)
 
 - **Clean checkout.** `git archive` of the candidate commit was extracted into
   an empty scratch directory with no auxiliary files. `make paper` and
   `make check` succeeded there, and the rebuilt `paper/main.pdf` was
-  byte-identical to the tracked copy. The SHA-256 is recorded in
-  `ADMISSION.md`.
+  byte-identical to the tracked copy. The earlier PDF SHA-256 was
+  `2dd08930f32d66cf575c0db9a19baf89f179318164b997819c95692198d1c562`.
 - **Repeat build.** Two consecutive warm builds in the working tree produced
   identical bytes.
 - **Rendering.** All 14 pages of the candidate PDF were rendered and inspected
@@ -66,3 +67,19 @@ the PDF text.
   bibliography) were read at reading resolution; pages 4–13 were checked at
   contact-sheet resolution. The title block is centred and no display is
   clipped. Line-level overflow is covered by `make check`.
+
+## Prose revision checks (2026-09-29)
+
+The abstract and README now lead with the prime number theorem in its Möbius
+form. The introduction explains the extra-factor/extra-deletion comparison.
+Proof bodies, equations, and theorem assertions are unchanged; this editorial
+review is not a fresh proof audit.
+
+- The revised source was built twice with no auxiliary files; both builds
+  produced identical PDF bytes.
+- `make check` passed: 14 pages, no TeX warnings or bad boxes, no unresolved
+  references. All 14 rendered pages were inspected for layout.
+- Revised PDF SHA-256: `19d9e2f0a9ea82a0619d1dc0165199290f9c814f736b87002909404b3f4bd72a`.
+- The manifest was regenerated and checked after the prose and record edits.
+- These edits are not committed or pushed. A clean committed-archive rebuild
+  remains part of refreezing the candidate.
